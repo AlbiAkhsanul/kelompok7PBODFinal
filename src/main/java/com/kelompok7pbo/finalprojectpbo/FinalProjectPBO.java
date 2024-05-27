@@ -4,6 +4,8 @@
 
 package com.kelompok7pbo.finalprojectpbo;
 
+import java.sql.Connection;
+
 /**
  *
  * @author albia
@@ -11,6 +13,9 @@ package com.kelompok7pbo.finalprojectpbo;
 public class FinalProjectPBO {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Connection connection = Database.getConnection();
+        System.out.print(connection);
+        
+        new Home(connection);
     }
 }

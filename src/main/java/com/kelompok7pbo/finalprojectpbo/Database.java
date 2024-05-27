@@ -14,7 +14,7 @@ import java.sql.DriverManager;
 public class Database {
     public static Connection getConnection() {
     Connection conn = null;
-    String url = "jdbc:mysql://localhost:3306/portalBerita";
+    String url = "jdbc:mysql://localhost:3306/portal_berita";
     String username = "root";
     String password = "";
 

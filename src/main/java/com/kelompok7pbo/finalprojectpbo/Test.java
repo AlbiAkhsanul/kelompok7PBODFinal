@@ -2,19 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.kelompok7pbo.finalprojectpbo.app;
+package com.kelompok7pbo.finalprojectpbo;
 
 /**
  *
  * @author albia
  */
-public class BuatBerita extends javax.swing.JPanel {
+public class Test extends javax.swing.JPanel {
 
     /**
      * Creates new form BuatBerita
      */
-    public BuatBerita() {
+    public Test() {
         initComponents();
+        setVisible(true);
     }
 
     /**
