@@ -16,6 +16,6 @@ public class FinalProjectPBO {
         Connection connection = Database.getConnection();
         System.out.print(connection);
         
-        new Home(connection);
+        new Login(connection);
     }
 }

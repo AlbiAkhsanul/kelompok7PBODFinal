@@ -4,7 +4,7 @@
  */
 package com.kelompok7pbo.finalprojectpbo;
 
-import com.kelompok7pbo.finalprojectpbo.Test;
+import com.kelompok7pbo.finalprojectpbo.BuatArticles;
 import java.sql.Connection;
 
 /**
