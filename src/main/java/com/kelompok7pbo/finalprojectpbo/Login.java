@@ -129,8 +129,7 @@ public class Login extends javax.swing.JFrame {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         String enteredUsername = jTextField1.getText();
         String enteredPassword = new String(jPasswordField1.getPassword());
- 
-        
+    
         try {
             String sql = "SELECT * FROM users WHERE USERNAME = ? AND PASSWORD = ?";
             PreparedStatement statement = connection.prepareStatement(sql);

@@ -7,6 +7,10 @@ package com.kelompok7pbo.finalprojectpbo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -60,7 +64,7 @@ public class BuatArticles extends javax.swing.JFrame {
         jTextArea1.setText("Konten");
         jScrollPane1.setViewportView(jTextArea1);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sains", "Komedi", "Horro", "SciFie" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sains", "Komedi", "Horror", "SciFi" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -105,11 +109,31 @@ public class BuatArticles extends javax.swing.JFrame {
         try {
         String judul = jTextField3.getText();
         String konten = jTextArea1.getText();
+        String kategori = (String) jComboBox1.getSelectedItem();
         
-        String sql = "INSERT INTO articles (JUDUL_ARTICLE, KONTEN_ARTICLE) VALUES (?, ?)";
+        Map<String, Integer> kategoriMap = new HashMap<>();
+        kategoriMap.put("Sains", 1);
+        kategoriMap.put("Komedi", 2);
+        kategoriMap.put("Horror", 3);
+        kategoriMap.put("SciFi", 4);
+
+        int kategoriId = kategoriMap.getOrDefault(kategori, 0);
+        
+        // Mendapatkan tanggal dan waktu saat ini
+        LocalDateTime now = LocalDateTime.now();
+
+        // Mendefinisikan format yang diinginkan
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        // Memformat tanggal dan waktu saat ini
+        String createdAt = now.format(formatter);
+        
+        String sql = "INSERT INTO articles (JUDUL_ARTICLE, KONTEN_ARTICLE, CATEGORY_ID, TANGGAL_ARTICLE) VALUES (?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, judul);
         statement.setString(2, konten);
+        statement.setInt(3, kategoriId);
+        statement.setString(4, createdAt);
         
         int rowsInserted = statement.executeUpdate();
 
