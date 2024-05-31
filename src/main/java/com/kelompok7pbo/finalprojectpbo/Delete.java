@@ -2,26 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package fitdelete;
+package com.kelompok7pbo.finalprojectpbo;
 
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 /**
  *
  * @author d101
  */
 public class Delete extends javax.swing.JFrame {
 
-    private ArticleDao articleDao;
+//    private ArticleDao articleDao;
+    private Connection connection;
 
     /**
      * Creates new form Delete
      */
-    public Delete() {
-        articleDao = new ArticleDao();
+    public Delete(Connection connection) {
+//        articleDao = new ArticleDao();
+        this.connection = connection;
         initComponents();
+        setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     /**

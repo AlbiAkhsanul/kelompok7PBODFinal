@@ -133,6 +133,15 @@ public class Home extends javax.swing.JFrame {
                 for (int i = 1; i <= CC; i++) {
                     v2.add(rs.getString(i));
                 }
+                
+                for (int i = 1; i <= CC; i++) {
+                    v2.add(rs.getString(i));
+                    v2.add(rs.getString("tanggal"));
+                    v2.add(rs.getString("id_barang"));
+                    v2.add(rs.getString("jumlah_barang"));
+                    v2.add(rs.getString("uang_masuk"));
+                    v2.add(rs.getString("catatan"));
+                }
 
                 DFT.addRow(v2);
             }
