@@ -168,6 +168,8 @@ public class CreateArticle extends javax.swing.JFrame {
             if (rowsInserted > 0) {
                 statement.close();
                 JOptionPane.showMessageDialog(this, "Data Article berhasil ditambahkan!", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+                new Dashboard(this.connection);
             } else {
                 statement.close();
                 JOptionPane.showMessageDialog(this, "Gagal menambahkan data Article!", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -178,7 +180,7 @@ public class CreateArticle extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        dispose();
+       dispose();
        new Dashboard(this.connection);
     }//GEN-LAST:event_jButton2ActionPerformed
 
