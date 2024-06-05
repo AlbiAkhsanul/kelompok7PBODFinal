@@ -120,7 +120,7 @@ public class MyArticles extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No", "Title", "Category", "Action"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
