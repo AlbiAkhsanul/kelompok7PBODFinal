@@ -20,16 +20,17 @@ import javax.swing.JOptionPane;
  * @author Lenovo
  */
 public class EditArticle extends javax.swing.JFrame {
-    private final Connection connection;
-    private final int articleId;
+    private Connection connection;
+    private int articleId;
+    private int userId;
     
-    public EditArticle(int articleId, Connection connection) {
+    public EditArticle(int articleId, Connection connection, int userId) {
         this.connection = connection;
         this.articleId = articleId;
+        this.userId = userId;
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
-        
         showArticleContent(articleId);
     }
     
@@ -225,6 +226,7 @@ public class EditArticle extends javax.swing.JFrame {
             statement.setString(2, konten);
             statement.setInt(3, kategoriId);
             statement.setString(4, updatedAt);
+            statement.setInt(5, articleId); // Set ID artikel yang akan diupdate
 
             int rowsUpdated = statement.executeUpdate();
 
@@ -232,20 +234,20 @@ public class EditArticle extends javax.swing.JFrame {
                 statement.close();
                 JOptionPane.showMessageDialog(this, "Data Article berhasil diupdate!", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
-                Dashboard dashboard = new Dashboard(this.connection);
+                new Dashboard(this.connection, this.userId); // Buka kembali dashboard setelah pengeditan
             } else {
                 statement.close();
                 JOptionPane.showMessageDialog(this, "Gagal mengupdate data Article!", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (HeadlessException | SQLException e) {
-            // This will print the stack trace to help debug the issue
-            
+        } catch (SQLException e) {
+            e.printStackTrace(); // Cetak stack trace jika terjadi kesalahan SQL
+            JOptionPane.showMessageDialog(this, "Gagal mengupdate data Article!", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
-        Dashboard dashboard = new Dashboard(this.connection);
+        new Dashboard(this.connection, this.userId);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

@@ -309,7 +309,9 @@ public class MyArticles extends javax.swing.JFrame {
             editButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     fireEditingStopped();
-                    // Tambahkan logika untuk tombol edit
+                    dispose();
+                    int articleId = articleIdMap.get(row); // Mendapatkan articleId dari indeks baris
+                    new EditArticle(articleId, connection, userId).setVisible(true);
                 }
             });
 

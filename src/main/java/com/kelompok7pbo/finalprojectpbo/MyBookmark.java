@@ -27,6 +27,10 @@ public class MyBookmark extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }    
 
+    MyBookmark(Connection connection, int userId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
         /**
          * 
          */
