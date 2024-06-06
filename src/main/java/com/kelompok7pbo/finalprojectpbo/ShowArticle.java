@@ -131,10 +131,10 @@ public class ShowArticle extends javax.swing.JFrame {
                 // };
                 // model.addRow(row);
 
-                System.out.println("Nama Kategori: " + rs.getString("NAMA_CATEGORY"));
-                System.out.println("Judul Artikel: " + rs.getString("JUDUL_ARTICLE"));
-                System.out.println("Konten Artikel: " + rs.getString("KONTEN_ARTICLE"));
-                System.out.println("Nama Pengguna: " + rs.getString("NAMA"));
+                // System.out.println("Nama Kategori: " + rs.getString("NAMA_CATEGORY"));
+                // System.out.println("Judul Artikel: " + rs.getString("JUDUL_ARTICLE"));
+                // System.out.println("Konten Artikel: " + rs.getString("KONTEN_ARTICLE"));
+                // System.out.println("Nama Pengguna: " + rs.getString("NAMA"));
             }
 
             // Set label dan text area jika data sudah benar
