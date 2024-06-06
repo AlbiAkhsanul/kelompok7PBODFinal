@@ -136,7 +136,7 @@ public class Home extends javax.swing.JFrame {
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][] {},
                 new String[] {
-                        "No", "Title", "Content", "Category", "Date", "Action"
+                        "No", "Judul", "Konten", "Kategori", "Tanggal", "Aksi"
                 }) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -299,7 +299,7 @@ public class Home extends javax.swing.JFrame {
         // Get the table column model
         TableColumnModel columnModel = table.getColumnModel();
 
-        if (columnModel.getColumnCount() >= 1) {
+        if (columnModel.getColumnCount() >= 5) {
             TableColumn firstNameColumn = columnModel.getColumn(0);
             firstNameColumn.setPreferredWidth(30); // Preferred width
             firstNameColumn.setMinWidth(20); // Minimum width
