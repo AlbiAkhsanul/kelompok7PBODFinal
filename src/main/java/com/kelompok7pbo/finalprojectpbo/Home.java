@@ -247,54 +247,54 @@ public class Home extends javax.swing.JFrame {
         }
     }
 
-    public static void columnCustomization(JTable table) {
-        // Get the table column model
-        TableColumnModel columnModel = table.getColumnModel();
+    // public static void columnCustomization(JTable table) {
+    // // Get the table column model
+    // TableColumnModel columnModel = table.getColumnModel();
 
-        if (columnModel.getColumnCount() >= 1) {
-            TableColumn firstNameColumn = columnModel.getColumn(0);
-            firstNameColumn.setPreferredWidth(30); // Preferred width
-            firstNameColumn.setMinWidth(20); // Minimum width
-            firstNameColumn.setMaxWidth(50); // Maximum width
-            TableColumn secondNameColumn = columnModel.getColumn(1);
-            secondNameColumn.setPreferredWidth(150); // Preferred width
-            secondNameColumn.setMinWidth(100); // Minimum width
-            secondNameColumn.setMaxWidth(180); // Maximum width
-            TableColumn thirdtNameColumn = columnModel.getColumn(2);
-            thirdtNameColumn.setPreferredWidth(180); // Preferred width
-            thirdtNameColumn.setMinWidth(150); // Minimum width
-            thirdtNameColumn.setMaxWidth(200); // Maximum width
-            TableColumn fourthNameColumn = columnModel.getColumn(3);
-            fourthNameColumn.setPreferredWidth(80); // Preferred width
-            fourthNameColumn.setMinWidth(50); // Minimum width
-            fourthNameColumn.setMaxWidth(100); // Maximum width
-            TableColumn fifthNameColumn = columnModel.getColumn(4);
-            fifthNameColumn.setPreferredWidth(110); // Preferred width
-            fifthNameColumn.setMinWidth(90); // Minimum width
-            fifthNameColumn.setMaxWidth(150); // Maximum width
-            TableColumn sixthNameColumn = columnModel.getColumn(5);
-            sixthNameColumn.setPreferredWidth(60); // Preferred width
-            sixthNameColumn.setMinWidth(40); // Minimum width
-            sixthNameColumn.setMaxWidth(80); // Maximum width
-        }
+    // if (columnModel.getColumnCount() >= 1) {
+    // TableColumn firstNameColumn = columnModel.getColumn(0);
+    // firstNameColumn.setPreferredWidth(30); // Preferred width
+    // firstNameColumn.setMinWidth(20); // Minimum width
+    // firstNameColumn.setMaxWidth(50); // Maximum width
+    // TableColumn secondNameColumn = columnModel.getColumn(1);
+    // secondNameColumn.setPreferredWidth(150); // Preferred width
+    // secondNameColumn.setMinWidth(100); // Minimum width
+    // secondNameColumn.setMaxWidth(180); // Maximum width
+    // TableColumn thirdtNameColumn = columnModel.getColumn(2);
+    // thirdtNameColumn.setPreferredWidth(180); // Preferred width
+    // thirdtNameColumn.setMinWidth(150); // Minimum width
+    // thirdtNameColumn.setMaxWidth(200); // Maximum width
+    // TableColumn fourthNameColumn = columnModel.getColumn(3);
+    // fourthNameColumn.setPreferredWidth(80); // Preferred width
+    // fourthNameColumn.setMinWidth(50); // Minimum width
+    // fourthNameColumn.setMaxWidth(100); // Maximum width
+    // TableColumn fifthNameColumn = columnModel.getColumn(4);
+    // fifthNameColumn.setPreferredWidth(110); // Preferred width
+    // fifthNameColumn.setMinWidth(90); // Minimum width
+    // fifthNameColumn.setMaxWidth(150); // Maximum width
+    // TableColumn sixthNameColumn = columnModel.getColumn(5);
+    // sixthNameColumn.setPreferredWidth(60); // Preferred width
+    // sixthNameColumn.setMinWidth(40); // Minimum width
+    // sixthNameColumn.setMaxWidth(80); // Maximum width
+    // }
 
-        // Iterate through each column and set resizable to false
-        for (int i = 0; i < columnModel.getColumnCount(); i++) {
-            TableColumn column = columnModel.getColumn(i);
-            column.setResizable(false);
-        }
+    // // Iterate through each column and set resizable to false
+    // for (int i = 0; i < columnModel.getColumnCount(); i++) {
+    // TableColumn column = columnModel.getColumn(i);
+    // column.setResizable(false);
+    // }
 
-        // Create a custom cell renderer
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+    // // Create a custom cell renderer
+    // DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+    // centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 
-        // Apply the custom renderer to all columns
-        TableColumnModel columnModelCenterer = table.getColumnModel();
-        for (int i = 0; i < columnModelCenterer.getColumnCount(); i++) {
-            columnModelCenterer.getColumn(i).setCellRenderer(centerRenderer);
-        }
+    // // Apply the custom renderer to all columns
+    // TableColumnModel columnModelCenterer = table.getColumnModel();
+    // for (int i = 0; i < columnModelCenterer.getColumnCount(); i++) {
+    // columnModelCenterer.getColumn(i).setCellRenderer(centerRenderer);
+    // }
 
-    }
+    // }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
