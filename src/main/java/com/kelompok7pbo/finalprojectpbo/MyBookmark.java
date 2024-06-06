@@ -6,6 +6,8 @@ package com.kelompok7pbo.finalprojectpbo;
 
 import java.sql.Connection;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author albia
@@ -20,8 +22,24 @@ public class MyBookmark extends javax.swing.JFrame {
     public MyBookmark(Connection connection) {
         this.connection = connection;
         initComponents();
+        loadData();
         setVisible(true);
         setLocationRelativeTo(null);
+    }    
+
+        /**
+         * 
+         */
+        private void loadData(){
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            Object[][] data = {
+                {1, "MAJAPAHIT", "SEJARAH", "AUTHOR 1", "DELETE"},
+                {2, "BANGUNAN MODERN", "ARSITERKTUR", "AUTHOR 1", "DELETE"},
+                {3, "TARI REMO", "BUDAYA", "AUTHOR 1", "DELETE"},
+            };
+    
     }
 
     /**
