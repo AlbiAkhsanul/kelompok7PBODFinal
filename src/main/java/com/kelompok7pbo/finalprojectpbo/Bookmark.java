@@ -46,14 +46,14 @@ public class Bookmark extends javax.swing.JFrame {
         jScrollPane2.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object[][] {},
-            new String[] {
-                "No", "Title", "Category", "Author", "Action"
-            }
-        ) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return column == 4; // Make only the Action column editable (for button)
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
