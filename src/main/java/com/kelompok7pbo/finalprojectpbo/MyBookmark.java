@@ -15,13 +15,15 @@ import javax.swing.table.DefaultTableModel;
 public class MyBookmark extends javax.swing.JFrame {
 
     private final Connection connection;
+    private int userId;
 
     /**
      * Creates new form Dashoard
      */
-    public MyBookmark(Connection connection) {
+    public MyBookmark(Connection connection, int userId) {
         this.connection = connection;
         initComponents();
+        this.userId = userId;
         setVisible(true);
         setLocationRelativeTo(null);
     }
@@ -128,6 +130,11 @@ public class MyBookmark extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jTextField1.setText("Bookmark");
         jTextField1.setBorder(null);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -148,18 +155,14 @@ public class MyBookmark extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 410, 70));
 
-        jTable1.setModel(new DefaultTableModel(
-                new Object[][]{
-                        {"1", "SEJARAH", "MAJAPAHIT", "Author1", "Delete"},
-                        {"2", "SEJARAH", "GAJAH MADA", "Author2", "Delete"},
-                        {"3", "ARSITEKTUR", "MODERN", "Author3", "Delete"},
-                        {"4", "BUDAYA", "TARI REMO", "Author4", "Delete"}
-                },
-                new String[]{
-                        "NO", "CATEGORY", "TITLE", "AUTHOR", "ACTION"
-                }
-        ));
-         {
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NO", "TITLE", "CATEGORY", "AUTHOR", "ACTION"
+            }
+        ) {
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
@@ -167,7 +170,7 @@ public class MyBookmark extends javax.swing.JFrame {
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
-    
+        });
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 410, 300));
@@ -181,26 +184,27 @@ public class MyBookmark extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         dispose();
-       //myarticle
+        new MyArticles(this.connection, this.userId);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         dispose();
-       //home
+        new Home(this.connection, this.userId);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        new Dashboard(this.connection, this.userId);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         dispose();
-        new MyBookmark(this.connection);
+        new MyBookmark(this.connection, this.userId);
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-    }  
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
