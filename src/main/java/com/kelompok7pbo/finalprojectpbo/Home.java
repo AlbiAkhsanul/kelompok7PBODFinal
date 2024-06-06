@@ -39,6 +39,7 @@ public class Home extends javax.swing.JFrame {
         this.connection = connection;
         this.userId = userId;
         initComponents();
+        jTable1.setRowHeight(30);
         columnCustomization(this.jTable1);
         setVisible(true);
         setLocationRelativeTo(null);
