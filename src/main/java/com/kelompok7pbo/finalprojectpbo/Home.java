@@ -19,6 +19,8 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 import javax.swing.UIManager;
@@ -60,6 +62,26 @@ public class Home extends javax.swing.JFrame {
         });
 
         jTextField1.setText("Search..");
+
+        jTextField1.setForeground(java.awt.Color.GRAY);
+        jTextField1.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (jTextField1.getText().equals("Search..")) {
+                    jTextField1.setText("");
+                    jTextField1.setForeground(java.awt.Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (jTextField1.getText().isEmpty()) {
+                    jTextField1.setForeground(java.awt.Color.GRAY);
+                    jTextField1.setText("Search..");
+                }
+            }
+        });
+        
         jTextField1.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
