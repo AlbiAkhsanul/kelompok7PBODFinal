@@ -7,6 +7,7 @@ package com.kelompok7pbo.finalprojectpbo;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,13 +21,53 @@ import javax.swing.JOptionPane;
  */
 public class EditArticle extends javax.swing.JFrame {
     private final Connection connection;
+    private final int articleId;
     
-    public EditArticle(Connection connection) {
+    public EditArticle(int articleId, Connection connection) {
         this.connection = connection;
+        this.articleId = articleId;
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
+        
+        showArticleContent(articleId);
     }
+    
+    private void showArticleContent(int articleId) {
+        try {
+            // Query untuk mendapatkan data artikel berdasarkan ID artikel
+            String sql = "SELECT JUDUL_ARTICLE, KONTEN_ARTICLE, CATEGORY_ID FROM articles WHERE ARTICLE_ID = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, articleId);
+
+                ResultSet resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    // Menampilkan data ke komponen GUI
+                    String title = resultSet.getString("JUDUL_ARTICLE");
+                    String content = resultSet.getString("KONTEN_ARTICLE");
+                    int categoryID = resultSet.getInt("CATEGORY_ID");
+
+                    // Set judul artikel
+                    jTextField1.setText(title);
+
+                    // Set konten artikel
+                    jTextArea1.setText(content);
+
+                    // Set kategori artikel
+                    switch (categoryID) {
+                        case 1 -> jComboBox1.setSelectedItem("Sains");
+                        case 2 -> jComboBox1.setSelectedItem("Komedi");
+                        case 3 -> jComboBox1.setSelectedItem("Horror");
+                        case 4 -> jComboBox1.setSelectedItem("SciFi");
+                        default -> jComboBox1.setSelectedIndex(0);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
