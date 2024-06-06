@@ -51,6 +51,7 @@ public class MyArticles extends javax.swing.JFrame {
         this.connection = connection;
         this.userId = userId;
         initComponents();
+        columnCustomization(this.jTable1);
         setVisible(true);
         setLocationRelativeTo(null);
         showTable();
