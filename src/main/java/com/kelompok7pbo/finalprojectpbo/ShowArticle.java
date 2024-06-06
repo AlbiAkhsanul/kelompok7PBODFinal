@@ -5,11 +5,14 @@
 package com.kelompok7pbo.finalprojectpbo;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import static javax.swing.UIManager.getString;
 
 /**
  *
@@ -29,7 +32,6 @@ public class ShowArticle extends javax.swing.JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         loadArticleContent();
-        // loadArticleContent();
     }
 
     /**
@@ -41,46 +43,69 @@ public class ShowArticle extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("jLabel1");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jLabel2.setText("jLabel2");
+
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(142, Short.MAX_VALUE)));
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(16, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jButton1)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 599,
+                                                Short.MAX_VALUE)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(15, 15, 15)));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
+                                .addGap(17, 17, 17)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel1)
-                                .addGap(30, 30, 30)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(148, Short.MAX_VALUE)));
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287,
+                                        Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(27, 27, 27)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+        new Home(this.connection);
+    }// GEN-LAST:event_jButton1ActionPerformed
 
     private void loadArticleContent() {
         System.out.println("Jalan Artikel : " + articleId);
@@ -91,6 +116,21 @@ public class ShowArticle extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
+                jLabel3.setText(rs.getString("JUDUL_ARTICLE"));
+                String info = "by: " + rs.getString("NAMA") + " in category " +
+                        rs.getString("NAMA_CATEGORY");
+
+                jLabel1.setText(info);
+                String content = "<html> " + rs.getString("KONTEN_ARTICLE") + " </html>";
+                jLabel2.setText(content);
+                // DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                // model.setRowCount(0);
+
+                // Object[] row = {
+                // rs.getString("KONTEN_ARTICLE"),
+                // };
+                // model.addRow(row);
+
                 System.out.println("Nama Kategori: " + rs.getString("NAMA_CATEGORY"));
                 System.out.println("Judul Artikel: " + rs.getString("JUDUL_ARTICLE"));
                 System.out.println("Konten Artikel: " + rs.getString("KONTEN_ARTICLE"));
@@ -102,7 +142,7 @@ public class ShowArticle extends javax.swing.JFrame {
                 String info = "by: " + rs.getString("NAMA") + " in category " +
                         rs.getString("NAMA_CATEGORY");
                 jLabel1.setText(info);
-                jTextArea1.setText(rs.getString("KONTEN_ARTICLE"));
+                // jTextArea1.setText(rs.getString("KONTEN_ARTICLE"));
             }
 
             rs.close();
@@ -113,8 +153,9 @@ public class ShowArticle extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

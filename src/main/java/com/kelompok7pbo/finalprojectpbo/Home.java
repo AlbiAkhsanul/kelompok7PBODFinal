@@ -18,13 +18,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.table.TableColumnModel;
 
@@ -43,6 +47,7 @@ public class Home extends javax.swing.JFrame {
     public Home(Connection connection) {
         this.connection = connection;
         initComponents();
+        columnCustomization(this.jTable1);
         setVisible(true);
         setLocationRelativeTo(null);
         showTable();
@@ -146,7 +151,7 @@ public class Home extends javax.swing.JFrame {
                 v2.add(rowIndex); // Gunakan rowIndex yang sebenarnya, bukan rowIndex++
                 v2.add(rs.getString("JUDUL_ARTICLE"));
                 v2.add(rs.getString("KONTEN_ARTICLE"));
-                v2.add(rs.getString("NAMA_CATEGORY")); // Use the category name from the join
+                v2.add(rs.getString("NAMA_CATEGORY"));
                 v2.add(rs.getString("TANGGAL_ARTICLE"));
                 v2.add("View");
 
@@ -240,6 +245,55 @@ public class Home extends javax.swing.JFrame {
         protected void fireEditingStopped() {
             super.fireEditingStopped();
         }
+    }
+
+    public static void columnCustomization(JTable table) {
+        // Get the table column model
+        TableColumnModel columnModel = table.getColumnModel();
+
+        if (columnModel.getColumnCount() >= 1) {
+            TableColumn firstNameColumn = columnModel.getColumn(0);
+            firstNameColumn.setPreferredWidth(30); // Preferred width
+            firstNameColumn.setMinWidth(20); // Minimum width
+            firstNameColumn.setMaxWidth(50); // Maximum width
+            TableColumn secondNameColumn = columnModel.getColumn(1);
+            secondNameColumn.setPreferredWidth(150); // Preferred width
+            secondNameColumn.setMinWidth(100); // Minimum width
+            secondNameColumn.setMaxWidth(180); // Maximum width
+            TableColumn thirdtNameColumn = columnModel.getColumn(2);
+            thirdtNameColumn.setPreferredWidth(180); // Preferred width
+            thirdtNameColumn.setMinWidth(150); // Minimum width
+            thirdtNameColumn.setMaxWidth(200); // Maximum width
+            TableColumn fourthNameColumn = columnModel.getColumn(3);
+            fourthNameColumn.setPreferredWidth(80); // Preferred width
+            fourthNameColumn.setMinWidth(50); // Minimum width
+            fourthNameColumn.setMaxWidth(100); // Maximum width
+            TableColumn fifthNameColumn = columnModel.getColumn(4);
+            fifthNameColumn.setPreferredWidth(110); // Preferred width
+            fifthNameColumn.setMinWidth(90); // Minimum width
+            fifthNameColumn.setMaxWidth(150); // Maximum width
+            TableColumn sixthNameColumn = columnModel.getColumn(5);
+            sixthNameColumn.setPreferredWidth(60); // Preferred width
+            sixthNameColumn.setMinWidth(40); // Minimum width
+            sixthNameColumn.setMaxWidth(80); // Maximum width
+        }
+
+        // Iterate through each column and set resizable to false
+        for (int i = 0; i < columnModel.getColumnCount(); i++) {
+            TableColumn column = columnModel.getColumn(i);
+            column.setResizable(false);
+        }
+
+        // Create a custom cell renderer
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+
+        // Apply the custom renderer to all columns
+        TableColumnModel columnModelCenterer = table.getColumnModel();
+        for (int i = 0; i < columnModelCenterer.getColumnCount(); i++) {
+            columnModelCenterer.getColumn(i).setCellRenderer(centerRenderer);
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
