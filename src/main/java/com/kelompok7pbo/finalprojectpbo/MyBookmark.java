@@ -6,6 +6,8 @@ package com.kelompok7pbo.finalprojectpbo;
 
 import java.sql.Connection;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author albia
@@ -146,14 +148,18 @@ public class MyBookmark extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 410, 70));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "NO", "TITLE", "CATEGORY", "AUTHOR", "ACTION"
-            }
-        ) {
+        jTable1.setModel(new DefaultTableModel(
+                new Object[][]{
+                        {"1", "SEJARAH", "MAJAPAHIT", "Author1", "Delete"},
+                        {"2", "SEJARAH", "GAJAH MADA", "Author2", "Delete"},
+                        {"3", "ARSITEKTUR", "MODERN", "Author3", "Delete"},
+                        {"4", "BUDAYA", "TARI REMO", "Author4", "Delete"}
+                },
+                new String[]{
+                        "NO", "CATEGORY", "TITLE", "AUTHOR", "ACTION"
+                }
+        ));
+         {
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
