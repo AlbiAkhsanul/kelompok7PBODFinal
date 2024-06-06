@@ -31,11 +31,13 @@ import javax.swing.table.TableColumnModel;
 
 public class Home extends javax.swing.JFrame {
     private Connection connection;
+    private int userId;
     private static final Logger LOGGER = Logger.getLogger(Home.class.getName());
     private Map<Integer, Integer> articleIdMap = new HashMap<>();
 
-    public Home(Connection connection) {
+    public Home(Connection connection, int userId) {
         this.connection = connection;
+        this.userId = userId;
         initComponents();
         columnCustomization(this.jTable1);
         setVisible(true);
@@ -169,7 +171,7 @@ public class Home extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
-        new Dashboard(this.connection);
+        new Dashboard(this.connection, this.userId);
     }// GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void showTable(String searchText) {
@@ -250,7 +252,7 @@ public class Home extends javax.swing.JFrame {
                     fireEditingStopped();
                     dispose();
                     int articleId = articleIdMap.get(row);
-                    new ShowArticle(articleId, connection).setVisible(true);
+                    new ShowArticle(articleId, connection, userId).setVisible(true);
                 }
             });
         }
