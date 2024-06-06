@@ -21,13 +21,15 @@ import static javax.swing.UIManager.getString;
 public class ShowArticle extends javax.swing.JFrame {
     private Connection connection;
     private int articleId;
+    private int userId;
 
     /**
      * Creates new form ShowArticle
      */
-    public ShowArticle(int articleId, Connection connection) {
+    public ShowArticle(int articleId, Connection connection, int userId) {
         this.connection = connection;
         this.articleId = articleId;
+        this.userId = userId;
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
@@ -104,7 +106,7 @@ public class ShowArticle extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         dispose();
-        new Home(this.connection);
+        new Home(this.connection, this.userId);
     }// GEN-LAST:event_jButton1ActionPerformed
 
     private void loadArticleContent() {

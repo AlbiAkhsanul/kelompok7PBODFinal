@@ -31,12 +31,15 @@ import javax.swing.table.TableColumnModel;
 
 public class Home extends javax.swing.JFrame {
     private Connection connection;
+    private int userId;
     private static final Logger LOGGER = Logger.getLogger(Home.class.getName());
     private Map<Integer, Integer> articleIdMap = new HashMap<>();
 
-    public Home(Connection connection) {
+    public Home(Connection connection, int userId) {
         this.connection = connection;
+        this.userId = userId;
         initComponents();
+        jTable1.setRowHeight(30);
         columnCustomization(this.jTable1);
         setVisible(true);
         setLocationRelativeTo(null);
@@ -134,7 +137,7 @@ public class Home extends javax.swing.JFrame {
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][] {},
                 new String[] {
-                        "No", "Title", "Content", "Category", "Date", "Action"
+                        "No", "Judul", "Konten", "Kategori", "Tanggal", "Aksi"
                 }) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -169,7 +172,7 @@ public class Home extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
-        new Dashboard(this.connection);
+        new Dashboard(this.connection, this.userId);
     }// GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void showTable(String searchText) {
@@ -250,7 +253,7 @@ public class Home extends javax.swing.JFrame {
                     fireEditingStopped();
                     dispose();
                     int articleId = articleIdMap.get(row);
-                    new ShowArticle(articleId, connection).setVisible(true);
+                    new ShowArticle(articleId, connection, userId).setVisible(true);
                 }
             });
         }
@@ -297,7 +300,7 @@ public class Home extends javax.swing.JFrame {
         // Get the table column model
         TableColumnModel columnModel = table.getColumnModel();
 
-        if (columnModel.getColumnCount() >= 1) {
+        if (columnModel.getColumnCount() >= 5) {
             TableColumn firstNameColumn = columnModel.getColumn(0);
             firstNameColumn.setPreferredWidth(30); // Preferred width
             firstNameColumn.setMinWidth(20); // Minimum width
