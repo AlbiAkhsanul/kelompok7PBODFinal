@@ -109,6 +109,9 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addGap(14, 14, 14)
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218,
+                                        Short.MAX_VALUE)
                                 .addComponent(jButton2)
                                 .addGap(20, 20, 20)));
 
