@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 30, 2024 at 08:44 AM
+-- Generation Time: Jun 06, 2024 at 02:57 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `portal_berita`
+-- Database: `ensiklopedia`
 --
 
 -- --------------------------------------------------------
@@ -35,15 +35,17 @@ CREATE TABLE `articles` (
   `KONTEN_ARTICLE` text,
   `FOTO_ARTICLE` varchar(100) DEFAULT NULL,
   `TANGGAL_ARTICLE` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `articles`
 --
 
 INSERT INTO `articles` (`ARTICLE_ID`, `USER_ID`, `CATEGORY_ID`, `JUDUL_ARTICLE`, `KONTEN_ARTICLE`, `FOTO_ARTICLE`, `TANGGAL_ARTICLE`) VALUES
-(8, NULL, 1, 'b', 'b', NULL, '2024-05-30 14:19:27'),
-(9, NULL, 1, 'g', 'g', NULL, '2024-05-30 14:49:52');
+(8, 2, 1, 'b', 'b', NULL, '2024-05-30 14:19:27'),
+(9, 2, 1, 'g', 'g', NULL, '2024-05-30 14:49:52'),
+(10, 2, 3, 'judul 1', 'konten 1', NULL, '2024-05-31 16:50:06'),
+(11, 2, 2, 'judul komedi', 'konten komedi', NULL, '2024-05-31 17:28:07');
 
 -- --------------------------------------------------------
 
@@ -61,7 +63,7 @@ CREATE TABLE `bookmarks` (
   `KONTEN_BOOKMARK` text,
   `FOTO_BOOKMARK` varchar(100) DEFAULT NULL,
   `TANGGAL_ BOOKMARK` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -72,7 +74,7 @@ CREATE TABLE `bookmarks` (
 CREATE TABLE `categories` (
   `CATEGORY_ID` int NOT NULL,
   `NAMA_CATEGORY` char(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `categories`
@@ -98,7 +100,7 @@ CREATE TABLE `users` (
   `PASSWORD` varchar(100) DEFAULT NULL,
   `FOTO_USER` varchar(100) DEFAULT NULL,
   `IS_ADMIN` tinyint NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -107,7 +109,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`USER_ID`, `NAMA`, `USERNAME`, `EMAIL`, `PASSWORD`, `FOTO_USER`, `IS_ADMIN`) VALUES
 (1, 'c', 'c', 'c', 'c', NULL, 0),
 (2, 'b', 'b', 'b', 'b', NULL, 0),
-(3, 'fadil', 'f', 'f', 'f', NULL, 0);
+(3, 'fadil', 'f', 'f', 'f', NULL, 0),
+(4, 'Albi Akhsanul', 'albi', 'albi@gmail.com', 'password', NULL, 0);
 
 --
 -- Indexes for dumped tables
@@ -150,7 +153,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `ARTICLE_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ARTICLE_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `bookmarks`
@@ -168,7 +171,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `USER_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `USER_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
