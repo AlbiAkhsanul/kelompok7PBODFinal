@@ -5,6 +5,8 @@
 package com.kelompok7pbo.finalprojectpbo;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -22,6 +24,7 @@ public class Dashboard extends javax.swing.JFrame {
         this.connection = connection;
         this.userId = userId;
         initComponents();
+        loadUserInfo();
         setVisible(true);
         setLocationRelativeTo(null);
     }
@@ -36,6 +39,8 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -44,6 +49,9 @@ public class Dashboard extends javax.swing.JFrame {
         buttonMyArticle = new javax.swing.JButton();
         buttonDashboard = new javax.swing.JButton();
         buttonBookmark = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,17 +90,38 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jPanel1.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 137, 100, -1));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("WELCOME");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("<html>PintarPedia adalah aplikasi ensiklopedia online menyediakan akses mudah ke berbagai informasi dan pengetahuan. Jelajahi berbagai topik dengan mudah menggunakan PintarPedia, tidak hanya membaca, anda bisa mencoba membuat artikel anda sendiri mulai saat ini di PintarPedia.</html>");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PintarPediaResized.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 430, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,14 +143,34 @@ public class Dashboard extends javax.swing.JFrame {
     }// GEN-LAST:event_jButton15ActionPerformed
 
     private void buttonBookmarkActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton16ActionPerformed
-        
+
     }// GEN-LAST:event_jButton16ActionPerformed
+
+    private void loadUserInfo() {
+        try {
+            String query = "SELECT * FROM users WHERE USER_ID = ?";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, userId);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                System.out.println("Jalan");
+                String welcome = "<html>Selamat Datang " + rs.getString("USERNAME") + " Di Aplikasi PintarPedia!</html>";
+                jLabel1.setText(welcome);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBookmark;
     private javax.swing.JButton buttonDashboard;
     private javax.swing.JButton buttonHome;
     private javax.swing.JButton buttonMyArticle;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

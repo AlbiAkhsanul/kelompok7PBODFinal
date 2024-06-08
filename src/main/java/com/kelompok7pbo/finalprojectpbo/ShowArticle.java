@@ -110,7 +110,6 @@ public class ShowArticle extends javax.swing.JFrame {
     }// GEN-LAST:event_jButton1ActionPerformed
 
     private void loadArticleContent() {
-        System.out.println("Jalan Artikel : " + articleId);
         try {
             String query = "SELECT c.NAMA_CATEGORY, a.JUDUL_ARTICLE, a.KONTEN_ARTICLE, u.USERNAME FROM articles a JOIN categories c ON a.CATEGORY_ID = c.CATEGORY_ID JOIN users u ON a.USER_ID = u.USER_ID WHERE a.ARTICLE_ID = ?";
             PreparedStatement pst = connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE);
