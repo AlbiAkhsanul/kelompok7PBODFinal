@@ -4,9 +4,11 @@
  */
 package com.kelompok7pbo.finalprojectpbo;
 
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +22,8 @@ public class EditProfile extends javax.swing.JFrame {
     
     /**
      * Creates new form EditProfile
+     * @param connection
+     * @param userId
      */
     public EditProfile(Connection connection, int userId) {
         this.connection = connection;
@@ -36,21 +40,21 @@ public class EditProfile extends javax.swing.JFrame {
 
     private void loadUserData() {
         try {
-            String query = "SELECT nama, username, email, password FROM users WHERE id = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(1, userId);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                jTextField1.setText(resultSet.getString("nama"));
-                jTextField2.setText(resultSet.getString("username"));
-                jTextField3.setText(resultSet.getString("email"));
-                jPasswordField1.setText(resultSet.getString("password"));
-                jPasswordField2.setText(resultSet.getString("password"));
+            String query = "SELECT NAMA, USERNAME, EMAIL, PASSWORD FROM users WHERE USER_ID = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, userId);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        jTextField1.setText(resultSet.getString("NAMA"));
+                        jTextField2.setText(resultSet.getString("USERNAME"));
+                        jTextField3.setText(resultSet.getString("EMAIL"));
+                        jPasswordField1.setText(resultSet.getString("PASSWORD"));
+                        jPasswordField2.setText(resultSet.getString("PASSWORD"));
+                    }
+                }
             }
-            resultSet.close();
-            statement.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Gagal memuat data pengguna: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -74,6 +78,7 @@ public class EditProfile extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,28 +99,39 @@ public class EditProfile extends javax.swing.JFrame {
 
         jLabel4.setText("Email");
 
+        jButton2.setText("Back");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 10, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,9 +156,11 @@ public class EditProfile extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap())
         );
 
         pack();
@@ -150,42 +168,44 @@ public class EditProfile extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            String namaLengkap = jTextField1.getText();
-            String username = jTextField2.getText();
-            String email = jTextField3.getText();
-            String password = new String(jPasswordField1.getPassword());
-            String confirmPassword = new String(jPasswordField2.getPassword());
+        String namaLengkap = jTextField1.getText();
+        String username = jTextField2.getText();
+        String email = jTextField3.getText();
+        String password = new String(jPasswordField1.getPassword());
+        String confirmPassword = new String(jPasswordField2.getPassword());
 
-            // Validasi password dan konfirmasi password
-            if (!password.equals(confirmPassword)) {
-                JOptionPane.showMessageDialog(this, "Password dan konfirmasi password tidak sama!", "ERROR", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+        if (!password.equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(this, "Password dan konfirmasi password tidak sama!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-            // Update data user di database
-            String sql = "UPDATE users SET nama = ?, username = ?, email = ?, password = ? WHERE id = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, namaLengkap);
-            statement.setString(2, username);
-            statement.setString(3, email);
-            statement.setString(4, password);
-            statement.setInt(5, userId);
+        String sql = "UPDATE users SET NAMA = ?, USERNAME = ?, EMAIL = ?, PASSWORD = ? WHERE USER_ID = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, namaLengkap);
+        statement.setString(2, username);
+        statement.setString(3, email);
+        statement.setString(4, password);
+        statement.setInt(5, userId);
 
-            int rowsUpdated = statement.executeUpdate();
-            statement.close();
+        int rowsUpdated = statement.executeUpdate();
+        statement.close();
 
-            if (rowsUpdated > 0) {
-                JOptionPane.showMessageDialog(this, "Profil berhasil diupdate!", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
-                dispose();
-                new Profile(this.connection, this.userId);
-            } else {
-                JOptionPane.showMessageDialog(this, "Gagal mengupdate profil!", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Gagal mengupdate profil!\n\n" + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        if (rowsUpdated > 0) {
+            JOptionPane.showMessageDialog(this, "Profil berhasil diupdate!", "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+            new Profile(this.connection, this.userId);
+        } else {
+            JOptionPane.showMessageDialog(this, "Gagal mengupdate profil!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (HeadlessException | SQLException e) {
+        JOptionPane.showMessageDialog(this, "Gagal mengupdate profil!\n\n" + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new Profile(this.connection, this.userId);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,15 +235,17 @@ public class EditProfile extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EditProfile().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            // Create a connection object here and pass it along with the userId
+            Connection connection = null; // Replace this with your actual connection object
+            int userId = 1; // Replace this with the actual user ID
+            new EditProfile().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

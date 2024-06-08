@@ -149,6 +149,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        dispose();
         new Profile(this.connection, this.userId);
     }//GEN-LAST:event_jButton5ActionPerformed
 
