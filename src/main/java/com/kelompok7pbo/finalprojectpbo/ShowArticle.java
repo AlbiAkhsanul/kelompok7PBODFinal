@@ -112,14 +112,14 @@ public class ShowArticle extends javax.swing.JFrame {
     private void loadArticleContent() {
         System.out.println("Jalan Artikel : " + articleId);
         try {
-            String query = "SELECT c.NAMA_CATEGORY, a.JUDUL_ARTICLE, a.KONTEN_ARTICLE, u.NAMA FROM articles a JOIN categories c ON a.CATEGORY_ID = c.CATEGORY_ID JOIN users u ON a.USER_ID = u.USER_ID WHERE a.ARTICLE_ID = ?";
+            String query = "SELECT c.NAMA_CATEGORY, a.JUDUL_ARTICLE, a.KONTEN_ARTICLE, u.USERNAME FROM articles a JOIN categories c ON a.CATEGORY_ID = c.CATEGORY_ID JOIN users u ON a.USER_ID = u.USER_ID WHERE a.ARTICLE_ID = ?";
             PreparedStatement pst = connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE);
             pst.setInt(1, articleId);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
                 jLabel3.setText(rs.getString("JUDUL_ARTICLE"));
-                String info = "by: " + rs.getString("NAMA") + " in category " +
+                String info = "by: " + rs.getString("USERNAME") + " in category " +
                         rs.getString("NAMA_CATEGORY");
 
                 jLabel1.setText(info);
@@ -137,14 +137,6 @@ public class ShowArticle extends javax.swing.JFrame {
                 // System.out.println("Judul Artikel: " + rs.getString("JUDUL_ARTICLE"));
                 // System.out.println("Konten Artikel: " + rs.getString("KONTEN_ARTICLE"));
                 // System.out.println("Nama Pengguna: " + rs.getString("NAMA"));
-            }
-
-            // Set label dan text area jika data sudah benar
-            if (rs.next()) {
-                String info = "by: " + rs.getString("NAMA") + " in category " +
-                        rs.getString("NAMA_CATEGORY");
-                jLabel1.setText(info);
-                // jTextArea1.setText(rs.getString("KONTEN_ARTICLE"));
             }
 
             rs.close();
