@@ -40,6 +40,7 @@ public class Bookmark extends javax.swing.JFrame {
     private int userId;
     private static final Logger LOGGER = Logger.getLogger(Home.class.getName());
     private Map<Integer, Integer> bookmarkIdMap = new HashMap<>();
+    private Map<Integer, Integer> articleIdMap = new HashMap<>();
 
     /**
      * Creates new form Bookmark
@@ -194,7 +195,9 @@ public class Bookmark extends javax.swing.JFrame {
             int rowIndex = 1;
             while (rs.next()) {
                 int bookmarkId = rs.getInt("BOOKMARK_ID");
+                int articleId = rs.getInt("ARTICLE_ID");
                 bookmarkIdMap.put(rowIndex - 1, bookmarkId);
+                articleIdMap.put(rowIndex - 1, articleId);
                 Vector<Object> v2 = new Vector<>();
                 v2.add(rowIndex);
                 v2.add(rs.getString("JUDUL_BOOKMARK"));
@@ -253,7 +256,7 @@ public class Bookmark extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent e) {
                     fireEditingStopped();
                     dispose();
-                    int articleId = bookmarkIdMap.get(row); // Mendapatkan articleId dari indeks baris
+                    int articleId = articleIdMap.get(row);
                     new ShowArticle(articleId, connection, userId).setVisible(true);
                 }
             });
@@ -261,16 +264,16 @@ public class Bookmark extends javax.swing.JFrame {
             deleteButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     fireEditingStopped();
-                    int articleId = bookmarkIdMap.get(row);
+                    int bookmarkId = bookmarkIdMap.get(row);
                     int dialogResult = JOptionPane.showConfirmDialog(panel,
                             "Apakah Anda Yakin Ingin Menghapus Bookmark Ini?",
                             "Konfirmasi Hapus",
                             JOptionPane.YES_NO_OPTION);
                     if (dialogResult == JOptionPane.YES_OPTION) {
                         try {
-                            String sql = "DELETE FROM articles WHERE ARTICLE_ID = ?";
+                            String sql = "DELETE FROM bookmarks WHERE BOOKMARK_ID = ?";
                             PreparedStatement statement = connection.prepareStatement(sql);
-                            statement.setInt(1, articleId);
+                            statement.setInt(1, bookmarkId);
 
                             int rowsDeleted = statement.executeUpdate();
                             if (rowsDeleted > 0) {
