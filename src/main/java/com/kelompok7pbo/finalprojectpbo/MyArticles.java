@@ -190,17 +190,14 @@ public class MyArticles extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new Bookmark(this.connection, this.userId);
     }// GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         dispose();
         new CreateArticle(this.connection, this.userId);
     }// GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
         dispose();
@@ -312,7 +309,7 @@ public class MyArticles extends javax.swing.JFrame {
                     fireEditingStopped();
                     int articleId = articleIdMap.get(row);
                     int dialogResult = JOptionPane.showConfirmDialog(panel,
-                            "Apakah Anda yakin ingin menghapus artikel ini?", "Konfirmasi Hapus",
+                            "Apakah Anda Yakin Ingin Menghapus Artikel Ini?", "Konfirmasi Hapus",
                             JOptionPane.YES_NO_OPTION);
                     if (dialogResult == JOptionPane.YES_OPTION) {
                         try {
@@ -326,7 +323,7 @@ public class MyArticles extends javax.swing.JFrame {
                                         "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
                                 showTable(); // Perbarui tabel setelah penghapusan
                             } else {
-                                JOptionPane.showMessageDialog(panel, "Gagal menghapus artikel dengan ID " + articleId,
+                                JOptionPane.showMessageDialog(panel, "Gagal Menghapus Artikel!",
                                         "ERROR", JOptionPane.ERROR_MESSAGE);
                             }
                             statement.close();
@@ -374,18 +371,18 @@ public class MyArticles extends javax.swing.JFrame {
             secondNameColumn.setPreferredWidth(150); // Preferred width
             secondNameColumn.setMinWidth(100); // Minimum width
             secondNameColumn.setMaxWidth(180); // Maximum width
-            TableColumn thirdtNameColumn = columnModel.getColumn(2);
-            thirdtNameColumn.setPreferredWidth(80); // Preferred width
-            thirdtNameColumn.setMinWidth(50); // Minimum width
-            thirdtNameColumn.setMaxWidth(100); // Maximum width
+            TableColumn thirdNameColumn = columnModel.getColumn(2);
+            thirdNameColumn.setPreferredWidth(80); // Preferred width
+            thirdNameColumn.setMinWidth(50); // Minimum width
+            thirdNameColumn.setMaxWidth(100); // Maximum width
             TableColumn fourthNameColumn = columnModel.getColumn(3);
-            fourthNameColumn.setPreferredWidth(110); // Preferred width
-            fourthNameColumn.setMinWidth(90); // Minimum width
-            fourthNameColumn.setMaxWidth(150); // Maximum width
-            TableColumn fifthNameColumn = columnModel.getColumn(4);
-            fifthNameColumn.setPreferredWidth(200); // Preferred width
-            fifthNameColumn.setMinWidth(180); // Minimum width
-            fifthNameColumn.setMaxWidth(250); // Maximum width
+            fourthNameColumn.setPreferredWidth(150); // Preferred width
+            fourthNameColumn.setMinWidth(120); // Minimum width
+            fourthNameColumn.setMaxWidth(160); // Maximum width
+            // TableColumn fifthNameColumn = columnModel.getColumn(4);
+            // fifthNameColumn.setPreferredWidth(200); // Preferred width
+            // fifthNameColumn.setMinWidth(180); // Minimum width
+            // fifthNameColumn.setMaxWidth(250); // Maximum width
         }
 
         // Iterate through each column and set resizable to false

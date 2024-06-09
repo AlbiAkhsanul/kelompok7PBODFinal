@@ -143,7 +143,8 @@ public class Dashboard extends javax.swing.JFrame {
     }// GEN-LAST:event_jButton15ActionPerformed
 
     private void buttonBookmarkActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton16ActionPerformed
-
+        dispose();
+        new Bookmark(this.connection, this.userId);
     }// GEN-LAST:event_jButton16ActionPerformed
 
     private void loadUserInfo() {

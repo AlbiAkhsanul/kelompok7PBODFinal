@@ -124,18 +124,6 @@ public class ShowArticle extends javax.swing.JFrame {
                 jLabel1.setText(info);
                 String content = "<html> " + rs.getString("KONTEN_ARTICLE") + " </html>";
                 jLabel2.setText(content);
-                // DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                // model.setRowCount(0);
-
-                // Object[] row = {
-                // rs.getString("KONTEN_ARTICLE"),
-                // };
-                // model.addRow(row);
-
-                // System.out.println("Nama Kategori: " + rs.getString("NAMA_CATEGORY"));
-                // System.out.println("Judul Artikel: " + rs.getString("JUDUL_ARTICLE"));
-                // System.out.println("Konten Artikel: " + rs.getString("KONTEN_ARTICLE"));
-                // System.out.println("Nama Pengguna: " + rs.getString("NAMA"));
             }
 
             rs.close();
