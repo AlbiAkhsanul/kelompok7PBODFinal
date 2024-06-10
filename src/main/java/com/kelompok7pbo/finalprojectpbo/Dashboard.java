@@ -49,6 +49,7 @@ public class Dashboard extends javax.swing.JFrame {
         buttonMyArticle = new javax.swing.JButton();
         buttonDashboard = new javax.swing.JButton();
         buttonBookmark = new javax.swing.JButton();
+        buttonBookmark1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -64,7 +65,7 @@ public class Dashboard extends javax.swing.JFrame {
                 buttonHomeActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 20, 100, -1));
+        jPanel1.add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 100, -1));
 
         buttonMyArticle.setText("Artikel Saya");
         buttonMyArticle.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +73,7 @@ public class Dashboard extends javax.swing.JFrame {
                 buttonMyArticleActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonMyArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 98, 100, -1));
+        jPanel1.add(buttonMyArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 100, -1));
 
         buttonDashboard.setText("Dashboard");
         buttonDashboard.addActionListener(new java.awt.event.ActionListener() {
@@ -80,15 +81,23 @@ public class Dashboard extends javax.swing.JFrame {
                 buttonDashboardActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 59, 100, -1));
+        jPanel1.add(buttonDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 100, -1));
 
-        buttonBookmark.setText("Bookmark");
+        buttonBookmark.setText("Profile");
         buttonBookmark.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBookmarkActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 137, 100, -1));
+        jPanel1.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, -1));
+
+        buttonBookmark1.setText("Bookmark");
+        buttonBookmark1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBookmark1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buttonBookmark1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 100, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("WELCOME");
@@ -104,8 +113,8 @@ public class Dashboard extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -127,6 +136,10 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonBookmark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBookmark1ActionPerformed
+        new Bookmark(this.connection, this.userId);
+    }//GEN-LAST:event_buttonBookmark1ActionPerformed
+
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton13ActionPerformed
         dispose();
         new Home(this.connection, this.userId);
@@ -144,7 +157,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void buttonBookmarkActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton16ActionPerformed
         dispose();
-        new Bookmark(this.connection, this.userId);
+        new Profile(this.connection, this.userId);
     }// GEN-LAST:event_jButton16ActionPerformed
 
     private void loadUserInfo() {
@@ -166,6 +179,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBookmark;
+    private javax.swing.JButton buttonBookmark1;
     private javax.swing.JButton buttonDashboard;
     private javax.swing.JButton buttonHome;
     private javax.swing.JButton buttonMyArticle;
