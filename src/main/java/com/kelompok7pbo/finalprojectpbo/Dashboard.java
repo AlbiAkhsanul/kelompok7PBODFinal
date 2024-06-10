@@ -137,6 +137,7 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBookmark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBookmark1ActionPerformed
+        dispose();
         new Bookmark(this.connection, this.userId);
     }//GEN-LAST:event_buttonBookmark1ActionPerformed
 
