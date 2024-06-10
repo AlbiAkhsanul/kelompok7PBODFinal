@@ -183,7 +183,7 @@ public class CreateArticle extends javax.swing.JFrame {
             statement.setString(2, konten);
             statement.setInt(3, kategoriId);
             statement.setString(4, createdAt);
-            statement.setInt(4, userId);
+            statement.setInt(5, userId);
 
             int rowsInserted = statement.executeUpdate();
 
