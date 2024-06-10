@@ -12,6 +12,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static javax.swing.UIManager.getString;
 
 /**
@@ -32,6 +35,7 @@ public class ShowArticle extends javax.swing.JFrame {
         this.userId = userId;
         initComponents();
         setVisible(true);
+        bookmarkButton.setVisible(false);
         setLocationRelativeTo(null);
         loadArticleContent();
     }
@@ -44,11 +48,6 @@ public class ShowArticle extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -56,12 +55,13 @@ public class ShowArticle extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        bookmarkButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Author");
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("Konten");
 
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +70,14 @@ public class ShowArticle extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("Judul");
+
+        bookmarkButton.setText("Tambahkan Ke Bookmark");
+        bookmarkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookmarkButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,25 +85,30 @@ public class ShowArticle extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(16, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jButton1)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 599,
-                                                Short.MAX_VALUE)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(bookmarkButton)
+                                        .addGroup(layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jButton1)
+                                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 599,
+                                                        Short.MAX_VALUE)
+                                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(15, 15, 15)));
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
+                                .addGap(10, 10, 10)
+                                .addComponent(bookmarkButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287,
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 267,
                                         Short.MAX_VALUE)
                                 .addComponent(jButton1)
                                 .addGap(27, 27, 27)));
@@ -104,47 +116,96 @@ public class ShowArticle extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bookmarkButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            String query = "SELECT * FROM articles WHERE ARTICLE_ID = ?";
+            PreparedStatement pst = connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            pst.setInt(1, articleId);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                int category_id = rs.getInt("CATEGORY_ID");
+                String judul_bookmark = rs.getString("JUDUL_ARTICLE");
+                String konten_bookmark = rs.getString("KONTEN_ARTICLE");
+
+                // Mendapatkan tanggal dan waktu saat ini
+                LocalDateTime now = LocalDateTime.now();
+
+                // Mendefinisikan format yang diinginkan
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+                // Memformat tanggal dan waktu saat ini
+                String createdAt = now.format(formatter);
+
+                String sql = "INSERT INTO bookmarks (ARTICLE_ID, USER_ID, CATEGORY_ID, JUDUL_BOOKMARK,KONTEN_BOOKMARK, TANGGAL_BOOKMARK) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setInt(1, articleId);
+                statement.setInt(2, userId);
+                statement.setInt(3, category_id);
+                statement.setString(4, judul_bookmark);
+                statement.setString(5, konten_bookmark);
+                statement.setString(6, createdAt);
+
+                int rowsInserted = statement.executeUpdate();
+
+                if (rowsInserted > 0) {
+                    statement.close();
+                    JOptionPane.showMessageDialog(this, "Bookmark berhasil ditambahkan!", "SUCCESS",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+                    new ShowArticle(this.articleId, this.connection, this.userId);
+                } else {
+                    statement.close();
+                    JOptionPane.showMessageDialog(this, "Gagal menambahkan bookmark!", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+
+                rs.close();
+                pst.close();
+            } else {
+                JOptionPane.showMessageDialog(this, "Artikel tidak ditemukan!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }// GEN-LAST:event_jButton2ActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         dispose();
         new Home(this.connection, this.userId);
     }// GEN-LAST:event_jButton1ActionPerformed
 
     private void loadArticleContent() {
-        System.out.println("Jalan Artikel : " + articleId);
         try {
-            String query = "SELECT c.NAMA_CATEGORY, a.JUDUL_ARTICLE, a.KONTEN_ARTICLE, u.NAMA FROM articles a JOIN categories c ON a.CATEGORY_ID = c.CATEGORY_ID JOIN users u ON a.USER_ID = u.USER_ID WHERE a.ARTICLE_ID = ?";
+            String query = "SELECT a.*, c.NAMA_CATEGORY, u.USERNAME FROM articles a JOIN categories c ON a.CATEGORY_ID = c.CATEGORY_ID JOIN users u ON a.USER_ID = u.USER_ID WHERE a.ARTICLE_ID = ?";
             PreparedStatement pst = connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE);
             pst.setInt(1, articleId);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
                 jLabel3.setText(rs.getString("JUDUL_ARTICLE"));
-                String info = "by: " + rs.getString("NAMA") + " in category " +
+                String info = "by: " + rs.getString("USERNAME") + " in category " +
                         rs.getString("NAMA_CATEGORY");
 
                 jLabel1.setText(info);
                 String content = "<html> " + rs.getString("KONTEN_ARTICLE") + " </html>";
                 jLabel2.setText(content);
-                // DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                // model.setRowCount(0);
 
-                // Object[] row = {
-                // rs.getString("KONTEN_ARTICLE"),
-                // };
-                // model.addRow(row);
+                int articleUserId = rs.getInt("USER_ID");
+                if (this.userId != articleUserId) {
+                    String bookmarkQuery = "SELECT COUNT(*) FROM bookmarks WHERE ARTICLE_ID = ? AND USER_ID = ?";
+                    PreparedStatement bookmarkPst = connection.prepareStatement(bookmarkQuery);
+                    bookmarkPst.setInt(1, articleId);
+                    bookmarkPst.setInt(2, this.userId);
+                    ResultSet bookmarkRs = bookmarkPst.executeQuery();
 
-                // System.out.println("Nama Kategori: " + rs.getString("NAMA_CATEGORY"));
-                // System.out.println("Judul Artikel: " + rs.getString("JUDUL_ARTICLE"));
-                // System.out.println("Konten Artikel: " + rs.getString("KONTEN_ARTICLE"));
-                // System.out.println("Nama Pengguna: " + rs.getString("NAMA"));
-            }
-
-            // Set label dan text area jika data sudah benar
-            if (rs.next()) {
-                String info = "by: " + rs.getString("NAMA") + " in category " +
-                        rs.getString("NAMA_CATEGORY");
-                jLabel1.setText(info);
-                // jTextArea1.setText(rs.getString("KONTEN_ARTICLE"));
+                    if (bookmarkRs.next()) {
+                        int count = bookmarkRs.getInt(1);
+                        if (count == 0) {
+                            bookmarkButton.setVisible(true); // Show the button if not already bookmarked
+                        }
+                    }
+                }
             }
 
             rs.close();
@@ -155,6 +216,7 @@ public class ShowArticle extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bookmarkButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

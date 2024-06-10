@@ -318,13 +318,13 @@ public class Home extends javax.swing.JFrame {
             fourthNameColumn.setMinWidth(50); // Minimum width
             fourthNameColumn.setMaxWidth(100); // Maximum width
             TableColumn fifthNameColumn = columnModel.getColumn(4);
-            fifthNameColumn.setPreferredWidth(110); // Preferred width
-            fifthNameColumn.setMinWidth(90); // Minimum width
-            fifthNameColumn.setMaxWidth(150); // Maximum width
-            TableColumn sixthNameColumn = columnModel.getColumn(5);
-            sixthNameColumn.setPreferredWidth(60); // Preferred width
-            sixthNameColumn.setMinWidth(40); // Minimum width
-            sixthNameColumn.setMaxWidth(80); // Maximum width
+            fifthNameColumn.setPreferredWidth(150); // Preferred width
+            fifthNameColumn.setMinWidth(120); // Minimum width
+            fifthNameColumn.setMaxWidth(160); // Maximum width
+            // TableColumn sixthNameColumn = columnModel.getColumn(5);
+            // sixthNameColumn.setPreferredWidth(60); // Preferred width
+            // sixthNameColumn.setMinWidth(40); // Minimum width
+            // sixthNameColumn.setMaxWidth(80); // Maximum width
         }
 
         // Iterate through each column and set resizable to false
