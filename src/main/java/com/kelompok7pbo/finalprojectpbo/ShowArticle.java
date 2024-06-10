@@ -12,6 +12,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static javax.swing.UIManager.getString;
 
 /**
@@ -114,35 +117,57 @@ public class ShowArticle extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookmarkButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        // try {
-        // String sql = "INSERT INTO bookmarks (JUDUL_ARTICLE, KONTEN_ARTICLE,
-        // CATEGORY_ID, TANGGAL_ARTICLE, USER_ID) VALUES (?, ?, ?, ?, ?)";
-        // PreparedStatement statement = connection.prepareStatement(sql);
-        // statement.setString(1, judul);
-        // statement.setString(2, konten);
-        // statement.setInt(3, kategoriId);
-        // statement.setString(4, createdAt);
-        // statement.setInt(4, userId);
+        try {
+            String query = "SELECT * FROM articles WHERE ARTICLE_ID = ?";
+            PreparedStatement pst = connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE);
+            pst.setInt(1, articleId);
+            ResultSet rs = pst.executeQuery();
 
-        // int rowsInserted = statement.executeUpdate();
+            if (rs.next()) {
+                int category_id = rs.getInt("CATEGORY_ID");
+                String judul_bookmark = rs.getString("JUDUL_ARTICLE");
+                String konten_bookmark = rs.getString("KONTEN_ARTICLE");
 
-        // if (rowsInserted > 0) {
-        // statement.close();
-        // JOptionPane.showMessageDialog(this, "Data Article berhasil ditambahkan!",
-        // "SUCCESS",
-        // JOptionPane.INFORMATION_MESSAGE);
-        // dispose();
-        // new Dashboard(this.connection, this.userId);
-        // } else {
-        // statement.close();
-        // JOptionPane.showMessageDialog(this, "Gagal menambahkan data Article!",
-        // "ERROR",
-        // JOptionPane.ERROR_MESSAGE);
-        // }
-        // } catch (Exception e) {
-        // e.printStackTrace(); // This will print the stack trace to help debug the
-        // issue
-        // }
+                // Mendapatkan tanggal dan waktu saat ini
+                LocalDateTime now = LocalDateTime.now();
+
+                // Mendefinisikan format yang diinginkan
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+                // Memformat tanggal dan waktu saat ini
+                String createdAt = now.format(formatter);
+
+                String sql = "INSERT INTO bookmarks (ARTICLE_ID, USER_ID, CATEGORY_ID, JUDUL_BOOKMARK,KONTEN_BOOKMARK, TANGGAL_BOOKMARK) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setInt(1, articleId);
+                statement.setInt(2, userId);
+                statement.setInt(3, category_id);
+                statement.setString(4, judul_bookmark);
+                statement.setString(5, konten_bookmark);
+                statement.setString(6, createdAt);
+
+                int rowsInserted = statement.executeUpdate();
+
+                if (rowsInserted > 0) {
+                    statement.close();
+                    JOptionPane.showMessageDialog(this, "Bookmark berhasil ditambahkan!", "SUCCESS",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+                    new ShowArticle(this.articleId, this.connection, this.userId);
+                } else {
+                    statement.close();
+                    JOptionPane.showMessageDialog(this, "Gagal menambahkan bookmark!", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+
+                rs.close();
+                pst.close();
+            } else {
+                JOptionPane.showMessageDialog(this, "Artikel tidak ditemukan!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }// GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
@@ -168,7 +193,18 @@ public class ShowArticle extends javax.swing.JFrame {
 
                 int articleUserId = rs.getInt("USER_ID");
                 if (this.userId != articleUserId) {
-                    bookmarkButton.setVisible(true); // Show the button if userId != articleUserId
+                    String bookmarkQuery = "SELECT COUNT(*) FROM bookmarks WHERE ARTICLE_ID = ? AND USER_ID = ?";
+                    PreparedStatement bookmarkPst = connection.prepareStatement(bookmarkQuery);
+                    bookmarkPst.setInt(1, articleId);
+                    bookmarkPst.setInt(2, this.userId);
+                    ResultSet bookmarkRs = bookmarkPst.executeQuery();
+
+                    if (bookmarkRs.next()) {
+                        int count = bookmarkRs.getInt(1);
+                        if (count == 0) {
+                            bookmarkButton.setVisible(true); // Show the button if not already bookmarked
+                        }
+                    }
                 }
             }
 
