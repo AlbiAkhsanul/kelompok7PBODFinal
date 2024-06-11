@@ -305,7 +305,6 @@ public class ManageArticles extends javax.swing.JFrame {
             acceptButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     fireEditingStopped();
-                    dispose();
                     int articleId = articleIdMap.get(row); // Mendapatkan articleId dari indeks baris
                     int dialogResult = JOptionPane.showConfirmDialog(panel,
                             "Apakah Anda Yakin Ingin Mengpublish Artikel Ini?", "Konfirmasi Publish",

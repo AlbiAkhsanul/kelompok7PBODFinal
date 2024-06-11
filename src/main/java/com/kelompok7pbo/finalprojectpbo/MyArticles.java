@@ -318,6 +318,8 @@ public class MyArticles extends javax.swing.JFrame {
     }
 
     class ButtonRenderer extends JPanel implements TableCellRenderer {
+        private int row; // tambahkan deklarasi variabel row di sini
+
         public ButtonRenderer() {
             setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
             JButton viewButton = new JButton("View");
@@ -332,8 +334,10 @@ public class MyArticles extends javax.swing.JFrame {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value,
                 boolean isSelected, boolean hasFocus, int row, int column) {
+            this.row = row;
             return this;
         }
+
     }
 
     class ButtonEditor extends DefaultCellEditor {
@@ -354,6 +358,7 @@ public class MyArticles extends javax.swing.JFrame {
             panel.add(editButton);
             panel.add(deleteButton);
 
+            // Logika aksi untuk tombol View, Edit, dan Delete tetap sama seperti sebelumnya
             viewButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     fireEditingStopped();
@@ -366,9 +371,28 @@ public class MyArticles extends javax.swing.JFrame {
             editButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     fireEditingStopped();
-                    dispose();
-                    int articleId = articleIdMap.get(row); // Mendapatkan articleId dari indeks baris
-                    new EditArticle(articleId, connection, userId).setVisible(true);
+                    try {
+                        int articleId = articleIdMap.get(row);
+                        String statusQuery = "SELECT STATUS_ARTICLE FROM articles WHERE ARTICLE_ID = ?";
+                        PreparedStatement statusPST = connection.prepareStatement(statusQuery);
+                        statusPST.setInt(1, articleId);
+                        ResultSet statusRS = statusPST.executeQuery();
+
+                        if (statusRS.next()) {
+                            String status = statusRS.getString("STATUS_ARTICLE");
+
+                            if (status.equals("Pending")) {
+                                dispose();
+                                new EditArticle(articleId, connection, userId).setVisible(true);
+                            } else {
+                                JOptionPane.showMessageDialog(MyArticles.this,
+                                        "Tidak Dapat Mengedit Article Yang Sudah Di Publish!", "ERROR",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                    } catch (SQLException ex) {
+                        LOGGER.log(Level.SEVERE, null, ex);
+                    }
                 }
             });
 
