@@ -119,15 +119,35 @@ public class Bookmark extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonHome.setText("Home");
+        buttonHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonHomeActionPerformed(evt);
+            }
+        });
         jPanel4.add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 13, 130, 30));
 
         buttonMyArticle.setText("Artikel Saya");
+        buttonMyArticle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMyArticleActionPerformed(evt);
+            }
+        });
         jPanel4.add(buttonMyArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, 30));
 
         buttonDashboard.setText("Dashboard");
+        buttonDashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDashboardActionPerformed(evt);
+            }
+        });
         jPanel4.add(buttonDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 30));
 
         buttonBookmark.setText("Profile");
+        buttonBookmark.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBookmarkActionPerformed(evt);
+            }
+        });
         jPanel4.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,30 +174,31 @@ public class Bookmark extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonMyArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMyArticleActionPerformed
+        dispose();
+        new MyArticles(this.connection, this.userId);
+    }//GEN-LAST:event_buttonMyArticleActionPerformed
+
+    private void buttonDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDashboardActionPerformed
+        dispose();
+        new Dashboard(this.connection, this.userId);
+    }//GEN-LAST:event_buttonDashboardActionPerformed
+
+    private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHomeActionPerformed
+        dispose();
+        new Home(this.connection, this.userId);
+    }//GEN-LAST:event_buttonHomeActionPerformed
+
+    private void buttonBookmarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBookmarkActionPerformed
+        dispose();
+        new Bookmark(this.connection, this.userId);
+    }//GEN-LAST:event_buttonBookmarkActionPerformed
+
     private void manageArticlesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_manageArticlesActionPerformed
         dispose();
         new ManageArticles(this.connection, this.userId);
     }// GEN-LAST:event_manageArticlesActionPerformed
 
-    private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonHomeActionPerformed
-        dispose();
-        new Home(this.connection, this.userId);
-    }// GEN-LAST:event_buttonHomeActionPerformed
-
-    private void buttonMyArticleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonMyArticleActionPerformed
-        dispose();
-        new MyArticles(this.connection, this.userId);
-    }// GEN-LAST:event_buttonMyArticleActionPerformed
-
-    private void buttonDashboardActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonDashboardActionPerformed
-        dispose();
-        new Dashboard(this.connection, this.userId);
-    }// GEN-LAST:event_buttonDashboardActionPerformed
-
-    private void buttonBookmarkActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonBookmarkActionPerformed
-        dispose();
-        new Bookmark(this.connection, this.userId);
-    }// GEN-LAST:event_buttonBookmarkActionPerformed
 
     private void showTable() {
         try {
