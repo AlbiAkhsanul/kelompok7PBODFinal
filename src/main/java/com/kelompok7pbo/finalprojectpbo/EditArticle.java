@@ -4,7 +4,6 @@
  */
 package com.kelompok7pbo.finalprojectpbo;
 
-import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,8 +11,6 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -36,6 +33,9 @@ public class EditArticle extends javax.swing.JFrame {
         loadCategories();
         setLocationRelativeTo(null);
         showArticleContent(articleId);
+
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setWrapStyleWord(true);
     }
 
     private void loadCategories() {

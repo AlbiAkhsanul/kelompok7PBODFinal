@@ -13,8 +13,6 @@ import javax.swing.JOptionPane;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -34,6 +32,9 @@ public class CreateArticle extends javax.swing.JFrame {
                 setVisible(true);
                 setLocationRelativeTo(null);
                 loadCategories();
+
+                jTextArea1.setLineWrap(true);
+                jTextArea1.setWrapStyleWord(true);
         }
 
         private void loadCategories() {
