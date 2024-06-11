@@ -35,7 +35,7 @@ public class ShowArticle extends javax.swing.JFrame {
         this.userId = userId;
         initComponents();
         setVisible(true);
-        bookmarkButton.setVisible(true);
+        bookmarkButton.setVisible(false);
         setLocationRelativeTo(null);
         loadArticleContent();
     }
@@ -92,6 +92,7 @@ public class ShowArticle extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonHome.setText("Home");
+        buttonHome.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonHomeActionPerformed(evt);
@@ -100,6 +101,7 @@ public class ShowArticle extends javax.swing.JFrame {
         jPanel1.add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 13, 130, 30));
 
         buttonMyArticle.setText("Artikel Saya");
+        buttonMyArticle.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonMyArticle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonMyArticleActionPerformed(evt);
@@ -108,6 +110,7 @@ public class ShowArticle extends javax.swing.JFrame {
         jPanel1.add(buttonMyArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, 30));
 
         buttonDashboard.setText("Dashboard");
+        buttonDashboard.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonDashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDashboardActionPerformed(evt);
@@ -116,6 +119,7 @@ public class ShowArticle extends javax.swing.JFrame {
         jPanel1.add(buttonDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 30));
 
         buttonBookmark.setText("Profile");
+        buttonBookmark.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonBookmark.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBookmarkActionPerformed(evt);
@@ -124,6 +128,7 @@ public class ShowArticle extends javax.swing.JFrame {
         jPanel1.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 130, 30));
 
         buttonBookmark1.setText("Bookmark");
+        buttonBookmark1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonBookmark1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBookmark1ActionPerformed(evt);

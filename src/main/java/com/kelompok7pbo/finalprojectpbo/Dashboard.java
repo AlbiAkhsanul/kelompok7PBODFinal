@@ -64,6 +64,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonHome.setText("Home");
+        buttonHome.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonHomeActionPerformed(evt);
@@ -72,6 +73,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1.add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 130, 30));
 
         buttonMyArticle.setText("Artikel Saya");
+        buttonMyArticle.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonMyArticle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonMyArticleActionPerformed(evt);
@@ -80,6 +82,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1.add(buttonMyArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 130, 30));
 
         buttonBookmark.setText("Profile");
+        buttonBookmark.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonBookmark.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBookmarkActionPerformed(evt);
@@ -88,6 +91,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 130, 30));
 
         buttonBookmark1.setText("Bookmark");
+        buttonBookmark1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonBookmark1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBookmark1ActionPerformed(evt);
@@ -96,6 +100,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel1.add(buttonBookmark1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 130, 30));
 
         manageArticles.setText("Manage Artikel");
+        manageArticles.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         manageArticles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageArticlesActionPerformed(evt);
@@ -113,7 +118,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(153, 204, 255));
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("WELCOME");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -122,7 +126,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
+                .addContainerGap(78, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
