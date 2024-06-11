@@ -69,7 +69,7 @@ public class Dashboard extends javax.swing.JFrame {
                 buttonHomeActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, 30));
+        jPanel1.add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 130, 30));
 
         buttonMyArticle.setText("Artikel Saya");
         buttonMyArticle.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +77,7 @@ public class Dashboard extends javax.swing.JFrame {
                 buttonMyArticleActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonMyArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 110, 30));
+        jPanel1.add(buttonMyArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 130, 30));
 
         buttonBookmark.setText("Profile");
         buttonBookmark.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +85,7 @@ public class Dashboard extends javax.swing.JFrame {
                 buttonBookmarkActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 110, 30));
+        jPanel1.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 130, 30));
 
         buttonBookmark1.setText("Bookmark");
         buttonBookmark1.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +93,7 @@ public class Dashboard extends javax.swing.JFrame {
                 buttonBookmark1ActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonBookmark1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 110, 30));
+        jPanel1.add(buttonBookmark1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 130, 30));
 
         manageArticles.setText("Manage Artikel");
         manageArticles.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +101,7 @@ public class Dashboard extends javax.swing.JFrame {
                 manageArticlesActionPerformed(evt);
             }
         });
-        jPanel1.add(manageArticles, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 110, 30));
+        jPanel1.add(manageArticles, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 130, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("<html>PintarPedia adalah aplikasi ensiklopedia online menyediakan akses mudah ke berbagai informasi dan pengetahuan yang berhubungan dengan budaya, sejarah, suku dan geografi . Jelajahi berbagai artickel yang menurut anda menarik dengan mudah menggunakan PintarPedia, tidak hanya membaca, anda bisa mencoba membuat artikel anda sendiri mulai saat ini di PintarPedia.</html>");
@@ -121,36 +121,36 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(81, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
+                        .addGap(102, 102, 102)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
+                        .addGap(87, 87, 87)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(99, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,10 +187,7 @@ public class Dashboard extends javax.swing.JFrame {
         new MyArticles(this.connection, this.userId);
     }// GEN-LAST:event_jButton14ActionPerformed
 
-    private void buttonDashboardActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton15ActionPerformed
-        dispose();
-        new Dashboard(this.connection, this.userId);
-    }// GEN-LAST:event_jButton15ActionPerformed
+    
 
     private void buttonBookmarkActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton16ActionPerformed
         dispose();

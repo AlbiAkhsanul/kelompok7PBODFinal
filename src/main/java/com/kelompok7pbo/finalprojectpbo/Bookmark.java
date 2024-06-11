@@ -69,7 +69,7 @@ public class Bookmark extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -78,12 +78,11 @@ public class Bookmark extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
         buttonHome = new javax.swing.JButton();
         buttonMyArticle = new javax.swing.JButton();
         buttonDashboard = new javax.swing.JButton();
         buttonBookmark = new javax.swing.JButton();
-        separatorAdmin = new javax.swing.JSeparator();
         manageArticles = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -104,88 +103,58 @@ public class Bookmark extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null, null },
-                        { null, null, null, null, null },
-                        { null, null, null, null, null },
-                        { null, null, null, null, null }
-                },
-                new String[] {
-                        "No", "Judul", "Kategori", "Author", "Aksi"
-                }));
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "No", "Judul", "Kategori", "Author", "Aksi"
+            }
+        ));
         jScrollPane1.setViewportView(jTable1);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 670, 280));
 
-        jPanel3.setBackground(new java.awt.Color(221, 221, 221));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.setBackground(new java.awt.Color(221, 221, 221));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonHome.setText("Home");
-        buttonHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonHomeActionPerformed(evt);
-            }
-        });
-        jPanel3.add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 100, -1));
+        jPanel4.add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 13, 130, 30));
 
         buttonMyArticle.setText("Artikel Saya");
-        buttonMyArticle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonMyArticleActionPerformed(evt);
-            }
-        });
-        jPanel3.add(buttonMyArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 100, -1));
+        jPanel4.add(buttonMyArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, 30));
 
         buttonDashboard.setText("Dashboard");
-        buttonDashboard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonDashboardActionPerformed(evt);
-            }
-        });
-        jPanel3.add(buttonDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 100, -1));
+        jPanel4.add(buttonDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 30));
 
-        buttonBookmark.setText("Bookmark");
-        buttonBookmark.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBookmarkActionPerformed(evt);
-            }
-        });
-        jPanel3.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 100, -1));
-
-        separatorAdmin.setForeground(new java.awt.Color(30, 30, 30));
-        jPanel3.add(separatorAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 140, 10));
+        buttonBookmark.setText("Profile");
+        jPanel4.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, 30));
 
         manageArticles.setText("Manage Artikel");
-        manageArticles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageArticlesActionPerformed(evt);
-            }
-        });
-        jPanel3.add(manageArticles, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 120, 40));
+        jPanel4.add(manageArticles, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 130, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 140,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 687,
-                                                Short.MAX_VALUE))));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -415,10 +384,9 @@ public class Bookmark extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton manageArticles;
-    private javax.swing.JSeparator separatorAdmin;
     // End of variables declaration//GEN-END:variables
 }
