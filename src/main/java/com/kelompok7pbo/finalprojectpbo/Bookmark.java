@@ -80,6 +80,8 @@ public class Bookmark extends javax.swing.JFrame {
         buttonMyArticle = new javax.swing.JButton();
         buttonDashboard = new javax.swing.JButton();
         buttonBookmark = new javax.swing.JButton();
+        separatorAdmin = new javax.swing.JSeparator();
+        manageArticles = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +113,7 @@ public class Bookmark extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 580, 210));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 670, 280));
 
         jPanel3.setBackground(new java.awt.Color(221, 221, 221));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -122,7 +124,7 @@ public class Bookmark extends javax.swing.JFrame {
                 buttonHomeActionPerformed(evt);
             }
         });
-        jPanel3.add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 20, 100, -1));
+        jPanel3.add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 100, -1));
 
         buttonMyArticle.setText("Artikel Saya");
         buttonMyArticle.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +132,7 @@ public class Bookmark extends javax.swing.JFrame {
                 buttonMyArticleActionPerformed(evt);
             }
         });
-        jPanel3.add(buttonMyArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 98, 100, -1));
+        jPanel3.add(buttonMyArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 100, -1));
 
         buttonDashboard.setText("Dashboard");
         buttonDashboard.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +140,7 @@ public class Bookmark extends javax.swing.JFrame {
                 buttonDashboardActionPerformed(evt);
             }
         });
-        jPanel3.add(buttonDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 59, 100, -1));
+        jPanel3.add(buttonDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 100, -1));
 
         buttonBookmark.setText("Bookmark");
         buttonBookmark.addActionListener(new java.awt.event.ActionListener() {
@@ -146,18 +148,24 @@ public class Bookmark extends javax.swing.JFrame {
                 buttonBookmarkActionPerformed(evt);
             }
         });
-        jPanel3.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 137, 100, -1));
+        jPanel3.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 100, -1));
+
+        separatorAdmin.setForeground(new java.awt.Color(30, 30, 30));
+        jPanel3.add(separatorAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 140, 10));
+
+        manageArticles.setText("Manage Artikel");
+        jPanel3.add(manageArticles, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 120, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,5 +387,7 @@ public class Bookmark extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton manageArticles;
+    private javax.swing.JSeparator separatorAdmin;
     // End of variables declaration//GEN-END:variables
 }

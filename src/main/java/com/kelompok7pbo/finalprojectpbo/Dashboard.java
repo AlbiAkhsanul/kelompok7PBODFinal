@@ -50,6 +50,8 @@ public class Dashboard extends javax.swing.JFrame {
         buttonDashboard = new javax.swing.JButton();
         buttonBookmark = new javax.swing.JButton();
         buttonBookmark1 = new javax.swing.JButton();
+        separatorAdmin = new javax.swing.JSeparator();
+        manageArticles = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -65,7 +67,7 @@ public class Dashboard extends javax.swing.JFrame {
                 buttonHomeActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 100, -1));
+        jPanel1.add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 100, -1));
 
         buttonMyArticle.setText("Artikel Saya");
         buttonMyArticle.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +75,7 @@ public class Dashboard extends javax.swing.JFrame {
                 buttonMyArticleActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonMyArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 100, -1));
+        jPanel1.add(buttonMyArticle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 100, -1));
 
         buttonDashboard.setText("Dashboard");
         buttonDashboard.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +83,7 @@ public class Dashboard extends javax.swing.JFrame {
                 buttonDashboardActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 100, -1));
+        jPanel1.add(buttonDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 100, -1));
 
         buttonBookmark.setText("Profile");
         buttonBookmark.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +91,7 @@ public class Dashboard extends javax.swing.JFrame {
                 buttonBookmarkActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 100, -1));
+        jPanel1.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 100, -1));
 
         buttonBookmark1.setText("Bookmark");
         buttonBookmark1.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +99,18 @@ public class Dashboard extends javax.swing.JFrame {
                 buttonBookmark1ActionPerformed(evt);
             }
         });
-        jPanel1.add(buttonBookmark1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 100, -1));
+        jPanel1.add(buttonBookmark1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 100, -1));
+
+        separatorAdmin.setForeground(new java.awt.Color(30, 30, 30));
+        jPanel1.add(separatorAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 150, 10));
+
+        manageArticles.setText("Manage Artikel");
+        manageArticles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageArticlesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(manageArticles, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 120, 40));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("WELCOME");
@@ -113,12 +126,17 @@ public class Dashboard extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,6 +158,10 @@ public class Dashboard extends javax.swing.JFrame {
         dispose();
         new Bookmark(this.connection, this.userId);
     }//GEN-LAST:event_buttonBookmark1ActionPerformed
+
+    private void manageArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageArticlesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manageArticlesActionPerformed
 
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton13ActionPerformed
         dispose();
@@ -188,5 +210,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton manageArticles;
+    private javax.swing.JSeparator separatorAdmin;
     // End of variables declaration//GEN-END:variables
 }
