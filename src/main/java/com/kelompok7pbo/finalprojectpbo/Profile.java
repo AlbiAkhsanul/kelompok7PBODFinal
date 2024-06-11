@@ -169,8 +169,8 @@ public class Profile extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(0, 0, 153));
         jLabel5.setFont(new java.awt.Font("Tw Cen MT", 1, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel5.setText("PROFIL SAYA");
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 320, 70));
+        jLabel5.setText("PROFILE SAYA");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 360, 70));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 620, -1));
 

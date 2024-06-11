@@ -145,8 +145,8 @@ public class CreateArticle extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(0, 0, 153));
         jLabel5.setFont(new java.awt.Font("Tw Cen MT", 1, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel5.setText("Buat Artikel");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 270, 70));
+        jLabel5.setText("BUAT ARTIKEL");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 360, 70));
 
         jPanel1.setBackground(new java.awt.Color(221, 221, 221));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
