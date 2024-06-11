@@ -354,9 +354,13 @@ public class MyArticles extends javax.swing.JFrame {
                             if (status.equals("Pending")) {
                                 dispose();
                                 new EditArticle(articleId, connection, userId).setVisible(true);
-                            } else {
+                            } else if(status.equals("Accepted")){
                                 JOptionPane.showMessageDialog(MyArticles.this,
                                         "Tidak Dapat Mengedit Article Yang Sudah Di Publish!", "ERROR",
+                                        JOptionPane.ERROR_MESSAGE);
+                            }else{
+                                JOptionPane.showMessageDialog(MyArticles.this,
+                                        "Tidak Dapat Mengedit Article Yang Sudah Di Tolak!", "ERROR",
                                         JOptionPane.ERROR_MESSAGE);
                             }
                         }
