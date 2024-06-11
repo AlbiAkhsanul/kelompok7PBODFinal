@@ -46,39 +46,52 @@ public class Home extends javax.swing.JFrame {
 
         jTextField1.setForeground(java.awt.Color.GRAY);
         jTextField1.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (jTextField1.getText().equals("Search..")) {
-                    jTextField1.setText("");
-                    jTextField1.setForeground(java.awt.Color.BLACK);
-                }
-            }
+    @Override
+    public void focusGained(FocusEvent e) {
+        if (jTextField1.getText().equals("Search..")) {
+            jTextField1.setText("");
+            jTextField1.setForeground(java.awt.Color.BLACK);
+        }
+    }
 
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (jTextField1.getText().isEmpty()) {
-                    jTextField1.setForeground(java.awt.Color.GRAY);
-                    jTextField1.setText("Search..");
-                }
-            }
-        });
+    @Override
+    public void focusLost(FocusEvent e) {
+        if (jTextField1.getText().isEmpty()) {
+            jTextField1.setForeground(java.awt.Color.GRAY);
+            jTextField1.setText("Search..");
+            // Perform search when focus is lost and field is empty
+            searchTable("");
+        } else {
+            // Perform search when focus is lost and field is not empty
+            searchTable(jTextField1.getText());
+        }
+    }
+});
 
-        jTextField1.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                searchTable(jTextField1.getText());
-            }
+jTextField1.getDocument().addDocumentListener(new DocumentListener() {
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+        if (!jTextField1.getText().isEmpty()) {
+            searchTable(jTextField1.getText());
+        }
+    }
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                searchTable(jTextField1.getText());
-            }
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+        if (!jTextField1.getText().isEmpty()) {
+            searchTable(jTextField1.getText());
+        } else {
+            searchTable("");
+        }
+    }
 
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                searchTable(jTextField1.getText());
-            }
-        });
+    @Override
+    public void changedUpdate(DocumentEvent e) {
+        if (!jTextField1.getText().isEmpty()) {
+            searchTable(jTextField1.getText());
+        }
+    }
+});
 
         showTable("");
     }
@@ -243,43 +256,43 @@ public class Home extends javax.swing.JFrame {
     }// GEN-LAST:event_jButton1ActionPerformed
 
     private void showTable(String searchText) {
-        try {
-            String query = "SELECT a.*, c.NAMA_CATEGORY FROM articles a JOIN categories c ON a.CATEGORY_ID = c.CATEGORY_ID WHERE (a.JUDUL_ARTICLE LIKE ? OR a.KONTEN_ARTICLE LIKE ? OR c.NAMA_CATEGORY LIKE ?) AND a.STATUS_ARTICLE = 'Accepted'";
-            PreparedStatement pst = connection.prepareStatement(query);
-            String searchPattern = "%" + searchText + "%";
-            pst.setString(1, searchPattern);
-            pst.setString(2, searchPattern);
-            pst.setString(3, searchPattern);
-            ResultSet rs = pst.executeQuery();
+    try {
+        String query = "SELECT a.*, c.NAMA_CATEGORY FROM articles a JOIN categories c ON a.CATEGORY_ID = c.CATEGORY_ID WHERE (a.JUDUL_ARTICLE LIKE ? OR a.KONTEN_ARTICLE LIKE ? OR c.NAMA_CATEGORY LIKE ?) AND a.STATUS_ARTICLE = 'Accepted'";
+        PreparedStatement pst = connection.prepareStatement(query);
+        String searchPattern = "%" + searchText + "%";
+        pst.setString(1, searchPattern);
+        pst.setString(2, searchPattern);
+        pst.setString(3, searchPattern);
+        ResultSet rs = pst.executeQuery();
 
-            DefaultTableModel DFT = (DefaultTableModel) jTable1.getModel();
-            DFT.setRowCount(0);
+        DefaultTableModel DFT = (DefaultTableModel) jTable1.getModel();
+        DFT.setRowCount(0);
 
-            int rowIndex = 1;
-            while (rs.next()) {
-                int articleId = rs.getInt("ARTICLE_ID");
-                articleIdMap.put(rowIndex - 1, articleId);
-                Vector<Object> v2 = new Vector<>();
-                v2.add(rowIndex);
-                v2.add(rs.getString("JUDUL_ARTICLE"));
-                v2.add(rs.getString("KONTEN_ARTICLE"));
-                v2.add(rs.getString("NAMA_CATEGORY"));
-                v2.add(rs.getString("TANGGAL_ARTICLE"));
-                v2.add("View");
+        int rowIndex = 1;
+        while (rs.next()) {
+            int articleId = rs.getInt("ARTICLE_ID");
+            articleIdMap.put(rowIndex - 1, articleId);
+            Vector<Object> v2 = new Vector<>();
+            v2.add(rowIndex);
+            v2.add(rs.getString("JUDUL_ARTICLE"));
+            v2.add(rs.getString("KONTEN_ARTICLE"));
+            v2.add(rs.getString("NAMA_CATEGORY"));
+            v2.add(rs.getString("TANGGAL_ARTICLE"));
+            v2.add("View");
 
-                DFT.addRow(v2);
-                rowIndex++;
-            }
-            rs.close();
-            pst.close();
-
-            TableColumnModel columnModel = jTable1.getColumnModel();
-            columnModel.getColumn(5).setCellRenderer(new ButtonRenderer());
-            columnModel.getColumn(5).setCellEditor(new ButtonEditor(new JCheckBox()));
-        } catch (SQLException ex) {
-            LOGGER.log(Level.SEVERE, null, ex);
+            DFT.addRow(v2);
+            rowIndex++;
         }
+        rs.close();
+        pst.close();
+
+        TableColumnModel columnModel = jTable1.getColumnModel();
+        columnModel.getColumn(5).setCellRenderer(new ButtonRenderer());
+        columnModel.getColumn(5).setCellEditor(new ButtonEditor(new JCheckBox()));
+    } catch (SQLException ex) {
+        LOGGER.log(Level.SEVERE, null, ex);
     }
+}
 
     private void searchTable(String searchText) {
         showTable(searchText);
