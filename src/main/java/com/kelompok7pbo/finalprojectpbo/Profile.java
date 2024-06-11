@@ -84,7 +84,6 @@ public class Profile extends javax.swing.JFrame {
         buttonMyArticle = new javax.swing.JButton();
         buttonDashboard = new javax.swing.JButton();
         buttonBookmark1 = new javax.swing.JButton();
-        manageArticles = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -148,9 +147,9 @@ public class Profile extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel3))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -218,14 +217,6 @@ public class Profile extends javax.swing.JFrame {
         });
         jPanel5.add(buttonBookmark1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, 30));
 
-        manageArticles.setText("Manage Artikel");
-        manageArticles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageArticlesActionPerformed(evt);
-            }
-        });
-        jPanel5.add(manageArticles, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 130, 30));
-
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 480));
 
         pack();
@@ -250,11 +241,6 @@ public class Profile extends javax.swing.JFrame {
         dispose();
         new Bookmark(this.connection, this.userId);
     }//GEN-LAST:event_buttonBookmark1ActionPerformed
-
-    private void manageArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageArticlesActionPerformed
-        dispose();
-        new ManageArticles(this.connection, this.userId);
-    }//GEN-LAST:event_manageArticlesActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         String password = JOptionPane.showInputDialog(this, "Masukkan kata sandi Anda:", "Verifikasi Kata Sandi",
@@ -352,6 +338,5 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JButton manageArticles;
     // End of variables declaration//GEN-END:variables
 }
