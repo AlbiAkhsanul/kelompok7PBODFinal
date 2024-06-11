@@ -88,7 +88,6 @@ public class EditProfile extends javax.swing.JFrame {
         buttonDashboard = new javax.swing.JButton();
         buttonBookmark = new javax.swing.JButton();
         buttonBookmark1 = new javax.swing.JButton();
-        manageArticles = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -183,14 +182,6 @@ public class EditProfile extends javax.swing.JFrame {
         });
         jPanel1.add(buttonBookmark1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, 30));
 
-        manageArticles.setText("Manage Artikel");
-        manageArticles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageArticlesActionPerformed(evt);
-            }
-        });
-        jPanel1.add(manageArticles, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 130, 30));
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 480));
 
         jPanel4.setBackground(new java.awt.Color(153, 204, 255));
@@ -234,11 +225,6 @@ public class EditProfile extends javax.swing.JFrame {
         dispose();
         new Bookmark(this.connection, this.userId);
     }//GEN-LAST:event_buttonBookmark1ActionPerformed
-
-    private void manageArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageArticlesActionPerformed
-        dispose();
-        new ManageArticles(this.connection, this.userId);
-    }//GEN-LAST:event_manageArticlesActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         try {
@@ -349,6 +335,5 @@ public class EditProfile extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JButton manageArticles;
     // End of variables declaration//GEN-END:variables
 }

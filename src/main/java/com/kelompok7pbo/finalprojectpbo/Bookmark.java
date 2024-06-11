@@ -53,7 +53,6 @@ public class Bookmark extends javax.swing.JFrame {
         jTable1.setRowHeight(30);
         columnCustomization(this.jTable1);
         setVisible(true);
-        manageArticles.setVisible(false);
         setLocationRelativeTo(null);
         showTable();
     }
@@ -83,7 +82,6 @@ public class Bookmark extends javax.swing.JFrame {
         buttonMyArticle = new javax.swing.JButton();
         buttonDashboard = new javax.swing.JButton();
         buttonBookmark = new javax.swing.JButton();
-        manageArticles = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,9 +129,6 @@ public class Bookmark extends javax.swing.JFrame {
 
         buttonBookmark.setText("Profile");
         jPanel4.add(buttonBookmark, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, 30));
-
-        manageArticles.setText("Manage Artikel");
-        jPanel4.add(manageArticles, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 130, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,14 +216,6 @@ public class Bookmark extends javax.swing.JFrame {
             PreparedStatement adminPST = connection.prepareStatement(adminQuery);
             adminPST.setInt(1, this.userId); // Change to the correct parameter index
             ResultSet adminRS = adminPST.executeQuery();
-
-            if (adminRS.next()) {
-                int is_admin = adminRS.getInt("IS_ADMIN"); // Use correct method to retrieve int
-
-                if (is_admin == 1) {
-                    manageArticles.setVisible(true); // Show the button if user is admin
-                }
-            }
 
             adminRS.close();
             adminPST.close();
@@ -387,6 +374,5 @@ public class Bookmark extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton manageArticles;
     // End of variables declaration//GEN-END:variables
 }

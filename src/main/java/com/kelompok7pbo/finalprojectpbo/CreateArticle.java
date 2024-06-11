@@ -102,7 +102,6 @@ public class CreateArticle extends javax.swing.JFrame {
         buttonDashboard = new javax.swing.JButton();
         buttonBookmark = new javax.swing.JButton();
         buttonBookmark1 = new javax.swing.JButton();
-        manageArticles = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -191,14 +190,6 @@ public class CreateArticle extends javax.swing.JFrame {
         });
         jPanel1.add(buttonBookmark1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 130, 30));
 
-        manageArticles.setText("Manage Artikel");
-        manageArticles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageArticlesActionPerformed(evt);
-            }
-        });
-        jPanel1.add(manageArticles, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 130, 30));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -274,11 +265,6 @@ public class CreateArticle extends javax.swing.JFrame {
         new Bookmark(this.connection, this.userId);
     }//GEN-LAST:event_buttonBookmark1ActionPerformed
 
-    private void manageArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageArticlesActionPerformed
-        dispose();
-        new ManageArticles(this.connection, this.userId);
-    }//GEN-LAST:event_manageArticlesActionPerformed
-
         private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox1ActionPerformed
                 // TODO add your handling code here:
         }// GEN-LAST:event_jComboBox1ActionPerformed
@@ -349,6 +335,5 @@ public class CreateArticle extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JButton manageArticles;
     // End of variables declaration//GEN-END:variables
 }
