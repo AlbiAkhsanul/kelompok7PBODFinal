@@ -35,7 +35,7 @@ public class ShowArticle extends javax.swing.JFrame {
         this.userId = userId;
         initComponents();
         setVisible(true);
-        bookmarkButton.setVisible(false);
+        bookmarkButton.setVisible(true);
         setLocationRelativeTo(null);
         loadArticleContent();
     }

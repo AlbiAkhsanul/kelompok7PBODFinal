@@ -191,18 +191,20 @@ public class Bookmark extends javax.swing.JFrame {
 
     private void buttonBookmarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBookmarkActionPerformed
         dispose();
-        new Bookmark(this.connection, this.userId);
+        new Profile(this.connection, this.userId);
     }//GEN-LAST:event_buttonBookmarkActionPerformed
 
-    private void manageArticlesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_manageArticlesActionPerformed
-        dispose();
-        new ManageArticles(this.connection, this.userId);
-    }// GEN-LAST:event_manageArticlesActionPerformed
+    
 
 
     private void showTable() {
         try {
-            String query = "SELECT b.*, a.USER_ID, u.USERNAME, c.NAMA_CATEGORY FROM bookmarks b JOIN articles a ON b.ARTICLE_ID = a.ARTICLE_ID JOIN users u ON a.USER_ID JOIN categories c ON a.CATEGORY_ID = c.CATEGORY_ID  = u.USER_ID WHERE b.USER_ID = ?";
+            String query = "SELECT b.*, a.USER_ID, u.USERNAME, c.NAMA_CATEGORY " +
+               "FROM bookmarks b " +
+               "JOIN articles a ON b.ARTICLE_ID = a.ARTICLE_ID " +
+               "JOIN users u ON a.USER_ID = u.USER_ID " +
+               "JOIN categories c ON a.CATEGORY_ID = c.CATEGORY_ID " +
+               "WHERE b.USER_ID = ?";
             PreparedStatement pst = connection.prepareStatement(query);
             pst.setInt(1, userId);
             ResultSet rs = pst.executeQuery();
