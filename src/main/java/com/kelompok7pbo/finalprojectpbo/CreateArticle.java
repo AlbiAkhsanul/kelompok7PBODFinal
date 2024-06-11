@@ -260,27 +260,27 @@ public class CreateArticle extends javax.swing.JFrame {
 
     private void buttonMyArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMyArticleActionPerformed
         dispose();
-        new Home(this.connection, this.userId);
+        new MyArticles(this.connection, this.userId);
     }//GEN-LAST:event_buttonMyArticleActionPerformed
 
     private void buttonDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDashboardActionPerformed
         dispose();
-        new Home(this.connection, this.userId);
+        new Dashboard(this.connection, this.userId);
     }//GEN-LAST:event_buttonDashboardActionPerformed
 
     private void buttonBookmarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBookmarkActionPerformed
         dispose();
-        new Home(this.connection, this.userId);
+        new Profile(this.connection, this.userId);
     }//GEN-LAST:event_buttonBookmarkActionPerformed
 
     private void buttonBookmark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBookmark1ActionPerformed
         dispose();
-        new Home(this.connection, this.userId);
+        new Bookmark(this.connection, this.userId);
     }//GEN-LAST:event_buttonBookmark1ActionPerformed
 
     private void manageArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageArticlesActionPerformed
         dispose();
-        new Home(this.connection, this.userId);
+        new ManageArticles(this.connection, this.userId);
     }//GEN-LAST:event_manageArticlesActionPerformed
 
         private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox1ActionPerformed
