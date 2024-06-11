@@ -27,6 +27,8 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
+import static javax.swing.UIManager.getInt;
+
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -53,6 +55,7 @@ public class MyArticles extends javax.swing.JFrame {
         jTable1.setRowHeight(30);
         columnCustomization(this.jTable1);
         setVisible(true);
+        manageArticles.setVisible(false);
         setLocationRelativeTo(null);
         showTable();
     }
@@ -293,6 +296,22 @@ public class MyArticles extends javax.swing.JFrame {
             TableColumnModel columnModel = jTable1.getColumnModel();
             columnModel.getColumn(5).setCellRenderer(new ButtonRenderer());
             columnModel.getColumn(5).setCellEditor(new ButtonEditor(new JCheckBox()));
+
+            String adminQuery = "SELECT IS_ADMIN FROM users WHERE USER_ID = ?";
+            PreparedStatement adminPST = connection.prepareStatement(adminQuery);
+            adminPST.setInt(1, this.userId); // Change to the correct parameter index
+            ResultSet adminRS = adminPST.executeQuery();
+
+            if (adminRS.next()) {
+                int is_admin = adminRS.getInt("IS_ADMIN"); // Use correct method to retrieve int
+
+                if (is_admin == 1) {
+                    manageArticles.setVisible(true); // Show the button if user is admin
+                }
+            }
+
+            adminRS.close();
+            adminPST.close();
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, null, ex);
         }

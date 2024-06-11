@@ -24,8 +24,9 @@ public class Dashboard extends javax.swing.JFrame {
         this.connection = connection;
         this.userId = userId;
         initComponents();
-        loadUserInfo();
         setVisible(true);
+        manageArticles.setVisible(false);
+        loadUserInfo();
         setLocationRelativeTo(null);
     }
 
@@ -41,7 +42,9 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -116,7 +119,8 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel1.setText("WELCOME");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("<html>PintarPedia adalah aplikasi ensiklopedia online menyediakan akses mudah ke berbagai informasi dan pengetahuan. Jelajahi berbagai topik dengan mudah menggunakan PintarPedia, tidak hanya membaca, anda bisa mencoba membuat artikel anda sendiri mulai saat ini di PintarPedia.</html>");
+        jLabel2.setText(
+                "<html>PintarPedia adalah aplikasi ensiklopedia online menyediakan akses mudah ke berbagai informasi dan pengetahuan. Jelajahi berbagai topik dengan mudah menggunakan PintarPedia, tidak hanya membaca, anda bisa mencoba membuat artikel anda sendiri mulai saat ini di PintarPedia.</html>");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PintarPediaResized.png"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -124,45 +128,61 @@ public class Dashboard extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 144,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(14, 14, 14)
+                                                                .addComponent(jLabel3,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 382,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(jLabel2,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 421,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                layout.createSequentialGroup()
+                                                        .addPreferredGap(
+                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addContainerGap()));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 308,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(50, Short.MAX_VALUE)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonBookmark1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBookmark1ActionPerformed
+    private void buttonBookmark1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonBookmark1ActionPerformed
         dispose();
         new Bookmark(this.connection, this.userId);
-    }//GEN-LAST:event_buttonBookmark1ActionPerformed
+    }// GEN-LAST:event_buttonBookmark1ActionPerformed
 
-    private void manageArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageArticlesActionPerformed
+    private void manageArticlesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_manageArticlesActionPerformed
         dispose();
         new ManageArticles(this.connection, this.userId);
-    }//GEN-LAST:event_manageArticlesActionPerformed
+    }// GEN-LAST:event_manageArticlesActionPerformed
 
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton13ActionPerformed
         dispose();
@@ -193,9 +213,19 @@ public class Dashboard extends javax.swing.JFrame {
 
             while (rs.next()) {
                 System.out.println("Jalan");
-                String welcome = "<html>Selamat Datang " + rs.getString("USERNAME") + " Di Aplikasi PintarPedia!</html>";
+                String welcome = "<html>Selamat Datang " + rs.getString("USERNAME")
+                        + " Di Aplikasi PintarPedia!</html>";
                 jLabel1.setText(welcome);
+
+                int is_admin = rs.getInt("IS_ADMIN");
+
+                if (is_admin == 1) {
+                    manageArticles.setVisible(true); // Show the button if user is admin
+                }
             }
+
+            rs.close();
+            pst.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
