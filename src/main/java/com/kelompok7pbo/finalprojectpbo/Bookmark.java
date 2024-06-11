@@ -154,6 +154,11 @@ public class Bookmark extends javax.swing.JFrame {
         jPanel3.add(separatorAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 140, 10));
 
         manageArticles.setText("Manage Artikel");
+        manageArticles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageArticlesActionPerformed(evt);
+            }
+        });
         jPanel3.add(manageArticles, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 120, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,6 +184,11 @@ public class Bookmark extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void manageArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageArticlesActionPerformed
+        dispose();
+        new ManageArticles(this.connection, this.userId);
+    }//GEN-LAST:event_manageArticlesActionPerformed
 
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_buttonHomeActionPerformed
         dispose();

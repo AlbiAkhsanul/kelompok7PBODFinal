@@ -4,17 +4,56 @@
  */
 package com.kelompok7pbo.finalprojectpbo;
 
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+
 /**
  *
  * @author albia
  */
 public class ManageArticles extends javax.swing.JFrame {
 
+    private Connection connection;
+    private int userId;
+    private static final Logger LOGGER = Logger.getLogger(Home.class.getName());
+    private Map<Integer, Integer> articleIdMap = new HashMap<>();
+
     /**
      * Creates new form ManageArticles
      */
-    public ManageArticles() {
+    public ManageArticles(Connection connection, int userId) {
+        this.connection = connection;
+        this.userId = userId;
         initComponents();
+        jTable1.setRowHeight(30);
+        columnCustomization(this.jTable1);
+        setVisible(true);
+        setLocationRelativeTo(null);
+        showTable();
     }
 
     /**
@@ -24,7 +63,9 @@ public class ManageArticles extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
@@ -47,7 +88,7 @@ public class ManageArticles extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PintarPedia (1).png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 110));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 110, 110));
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 153));
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 1, 48)); // NOI18N
@@ -55,7 +96,7 @@ public class ManageArticles extends javax.swing.JFrame {
         jLabel2.setText("Pending Articles");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 360, 70));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 0, 660, -1));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 0, 650, -1));
 
         jPanel1.setBackground(new java.awt.Color(221, 221, 221));
 
@@ -99,117 +140,296 @@ public class ManageArticles extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(separatorAdmin)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(manageArticles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(separatorAdmin)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(manageArticles, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap()));
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
-                .addGap(12, 12, 12)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(separatorAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(manageArticles, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(273, Short.MAX_VALUE))
-        );
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton5)
+                                .addGap(12, 12, 12)
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(separatorAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 10,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(manageArticles, javax.swing.GroupLayout.PREFERRED_SIZE, 35,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(273, Short.MAX_VALUE)));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 500));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "No", "Judul ", "Kategori ", "Tanggal", "Aksi"
-            }
-        ));
+                new Object[][] {
+                        { null, null, null, null, null },
+                        { null, null, null, null, null },
+                        { null, null, null, null, null },
+                        { null, null, null, null, null }
+                },
+                new String[] {
+                        "No", "Judul ", "Kategori ", "Tanggal", "Aksi"
+                }));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 650, 380));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 650, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
+        dispose();
+        new Home(this.connection, this.userId);
+    }// GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton4ActionPerformed
+        dispose();
+        new MyArticles(this.connection, this.userId);
+    }// GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton5ActionPerformed
+        dispose();
+        new Dashboard(this.connection, this.userId);
+    }// GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton6ActionPerformed
+        dispose();
+        new Bookmark(this.connection, this.userId);
+    }// GEN-LAST:event_jButton6ActionPerformed
 
-    private void manageArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageArticlesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_manageArticlesActionPerformed
+    private void manageArticlesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_manageArticlesActionPerformed
+        dispose();
+        new ManageArticles(this.connection, this.userId);
+    }// GEN-LAST:event_manageArticlesActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-        // (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-         * look and feel.
-         * For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
+    private void showTable() {
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageArticles.class.getName()).log(java.util.logging.Level.SEVERE, null,
-                    ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageArticles.class.getName()).log(java.util.logging.Level.SEVERE, null,
-                    ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageArticles.class.getName()).log(java.util.logging.Level.SEVERE, null,
-                    ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageArticles.class.getName()).log(java.util.logging.Level.SEVERE, null,
-                    ex);
-        }
-        // </editor-fold>
+            String query = "SELECT a.*, c.NAMA_CATEGORY FROM articles a JOIN categories c ON a.CATEGORY_ID = c.CATEGORY_ID WHERE a.STATUS_ARTICLE = 'Pending'";
+            PreparedStatement pst = connection.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManageArticles().setVisible(true);
+            DefaultTableModel DFT = (DefaultTableModel) jTable1.getModel();
+            DFT.setRowCount(0);
+
+            int rowIndex = 1;
+            while (rs.next()) {
+                int articleId = rs.getInt("ARTICLE_ID");
+                articleIdMap.put(rowIndex - 1, articleId);
+                Vector<Object> v2 = new Vector<>();
+                v2.add(rowIndex);
+                v2.add(rs.getString("JUDUL_ARTICLE"));
+                v2.add(rs.getString("NAMA_CATEGORY"));
+                v2.add(rs.getString("TANGGAL_ARTICLE"));
+                v2.add("Aksi");
+
+                DFT.addRow(v2);
+                rowIndex++;
             }
-        });
+            rs.close();
+            pst.close();
+
+            TableColumnModel columnModel = jTable1.getColumnModel();
+            columnModel.getColumn(4).setCellRenderer(new ButtonRenderer());
+            columnModel.getColumn(4).setCellEditor(new ButtonEditor(new JCheckBox()));
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, null, ex);
+        }
+    }
+
+    class ButtonRenderer extends JPanel implements TableCellRenderer {
+        public ButtonRenderer() {
+            setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
+            JButton viewButton = new JButton("View");
+            JButton acceptButton = new JButton("Accept");
+            JButton denyButton = new JButton("Deny");
+
+            add(viewButton);
+            add(acceptButton);
+            add(denyButton);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            return this;
+        }
+    }
+
+    class ButtonEditor extends DefaultCellEditor {
+        protected JPanel panel;
+        protected JButton viewButton;
+        protected JButton acceptButton;
+        protected JButton denyButton;
+        private int row;
+
+        public ButtonEditor(JCheckBox checkBox) {
+            super(checkBox);
+            panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
+            viewButton = new JButton("View");
+            acceptButton = new JButton("Accept");
+            denyButton = new JButton("Deny");
+
+            panel.add(viewButton);
+            panel.add(acceptButton);
+            panel.add(denyButton);
+
+            viewButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    fireEditingStopped();
+                    dispose();
+                    int articleId = articleIdMap.get(row); // Mendapatkan articleId dari indeks baris
+                    new ShowArticle(articleId, connection, userId).setVisible(true);
+                }
+            });
+
+            acceptButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    fireEditingStopped();
+                    dispose();
+                    int articleId = articleIdMap.get(row); // Mendapatkan articleId dari indeks baris
+                    int dialogResult = JOptionPane.showConfirmDialog(panel,
+                            "Apakah Anda Yakin Ingin Mengpublish Artikel Ini?", "Konfirmasi Publish",
+                            JOptionPane.YES_NO_OPTION);
+                    if (dialogResult == JOptionPane.YES_OPTION) {
+                        try {
+                            String query = "UPDATE articles SET STATUS_ARTICLE = 'Accepted' WHERE ARTICLE_ID = ?";
+                            PreparedStatement statement = connection.prepareStatement(query);
+                            statement.setInt(1, articleId);
+
+                            int rowsUpdated = statement.executeUpdate();
+                            if (rowsUpdated > 0) {
+                                JOptionPane.showMessageDialog(panel, "Artikel Berhasil Dipublish!",
+                                        "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+                                showTable(); // Perbarui tabel setelah penghapusan
+                            } else {
+                                JOptionPane.showMessageDialog(panel, "Gagal Mengpublish Artikel!",
+                                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                            }
+                            statement.close();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(MyArticles.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+            });
+
+            denyButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    fireEditingStopped();
+                    int articleId = articleIdMap.get(row);
+                    int dialogResult = JOptionPane.showConfirmDialog(panel,
+                            "Apakah Anda Yakin Ingin Menolak Artikel Ini?", "Konfirmasi Tolak",
+                            JOptionPane.YES_NO_OPTION);
+                    if (dialogResult == JOptionPane.YES_OPTION) {
+                        try {
+                            String query = "UPDATE articles SET STATUS_ARTICLE = 'Denied' WHERE ARTICLE_ID = ?";
+                            PreparedStatement statement = connection.prepareStatement(query);
+                            statement.setInt(1, articleId);
+
+                            int rowsUpdated = statement.executeUpdate();
+                            if (rowsUpdated > 0) {
+                                JOptionPane.showMessageDialog(panel, "Artikel Berhasil Ditolak!",
+                                        "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+                                showTable(); // Perbarui tabel setelah penghapusan
+                            } else {
+                                JOptionPane.showMessageDialog(panel, "Gagal Menolak Artikel!",
+                                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                            }
+                            statement.close();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(MyArticles.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+            });
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value,
+                boolean isSelected, int row, int column) {
+            this.row = row;
+            return panel;
+        }
+
+        @Override
+        public Object getCellEditorValue() {
+            return null;
+        }
+
+        @Override
+        public boolean stopCellEditing() {
+            return super.stopCellEditing();
+        }
+
+        @Override
+        protected void fireEditingStopped() {
+            super.fireEditingStopped();
+        }
+    }
+
+    public static void columnCustomization(JTable table) {
+        // Get the table column model
+        TableColumnModel columnModel = table.getColumnModel();
+
+        if (columnModel.getColumnCount() >= 4) {
+            TableColumn firstNameColumn = columnModel.getColumn(0);
+            firstNameColumn.setPreferredWidth(30); // Preferred width
+            firstNameColumn.setMinWidth(20); // Minimum width
+            firstNameColumn.setMaxWidth(50); // Maximum width
+            TableColumn secondNameColumn = columnModel.getColumn(1);
+            secondNameColumn.setPreferredWidth(150); // Preferred width
+            secondNameColumn.setMinWidth(100); // Minimum width
+            secondNameColumn.setMaxWidth(180); // Maximum width
+            TableColumn thirdNameColumn = columnModel.getColumn(2);
+            thirdNameColumn.setPreferredWidth(80); // Preferred width
+            thirdNameColumn.setMinWidth(50); // Minimum width
+            thirdNameColumn.setMaxWidth(100); // Maximum width
+            TableColumn fourthNameColumn = columnModel.getColumn(3);
+            fourthNameColumn.setPreferredWidth(150); // Preferred width
+            fourthNameColumn.setMinWidth(120); // Minimum width
+            fourthNameColumn.setMaxWidth(160); // Maximum width
+            // TableColumn fifthNameColumn = columnModel.getColumn(4);
+            // fifthNameColumn.setPreferredWidth(200); // Preferred width
+            // fifthNameColumn.setMinWidth(180); // Minimum width
+            // fifthNameColumn.setMaxWidth(250); // Maximum width
+        }
+
+        // Iterate through each column and set resizable to false
+        for (int i = 0; i < columnModel.getColumnCount(); i++) {
+            TableColumn column = columnModel.getColumn(i);
+            column.setResizable(false);
+        }
+
+        // Create a custom cell renderer
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+
+        // Apply the custom renderer to all columns
+        TableColumnModel columnModelCenterer = table.getColumnModel();
+        for (int i = 0; i < columnModelCenterer.getColumnCount(); i++) {
+            columnModelCenterer.getColumn(i).setCellRenderer(centerRenderer);
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -160,7 +160,8 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonBookmark1ActionPerformed
 
     private void manageArticlesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageArticlesActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new ManageArticles(this.connection, this.userId);
     }//GEN-LAST:event_manageArticlesActionPerformed
 
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton13ActionPerformed
